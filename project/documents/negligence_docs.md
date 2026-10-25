@@ -1,0 +1,12 @@
+# ===================================================================
+# CONFIDENTIAL REPORT
+# ===================================================================
+
+**Date of Accident:** November 14, 2025 
+**Location: Site 4B** - Riverfront High-Rise Project (Tower II) 
+**Victim:** Arthur Lan
+**Stakeholder Involved:** Thomas Vance, CEO of Vance Construction Ltd
+## 1. ACCIDENT OVERVIEW 
+At approximately 14:15, a primary load-bearing support cable snapped during a heavy materials transfer. Mr. Arthur Lan was found dead instantaneously due to structural impact and a 12-story fall.
+## 2. FINDINGS 
+Mr. Arthur has reported to Mr. Thomas Vance that the steel supports were breaking. However, this request to replace equipment was rejected by Mr. Thomas Vance, citing "budget constraints and project timeline deadlines”. Repairs were marked as completed in systems, but no real physical repair work was actually performed. 

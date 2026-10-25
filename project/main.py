@@ -22,6 +22,7 @@ def get_name():
     time.sleep(1)
 
 def play_intro():
+    #clears screen
     print("\033[H\033[J", end="")
     time.sleep(1)
     typewriter_print('You have been invited to a party at a mansion by your former client, Thomas Vance.', delay=0.05)
