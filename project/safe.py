@@ -1,6 +1,6 @@
 import time
-from main import typewriter_print
-from txt import display_md
+from introduction import typewriter_print
+from md import display_md
 
 def play_safe():
     print("\033[H\033[J", end="")
@@ -78,4 +78,3 @@ def print_keypad():
     print('~~~~ * ~~~~~ 0(+) ~~~~~ # ~~~~')
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
 
-safe_contents()
