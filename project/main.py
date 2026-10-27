@@ -5,16 +5,23 @@ from safe import play_safe, safe_contents
 
 # GLOBAL VARIABLES
 safe_unlocked=False
+computer_unlocked=False
 
 if __name__ == "__main__":
-    get_name()
-    play_intro()
+    # play intro
+    # get_name()
+    # play_intro()
+
+    # game loop
     while True:
+        print("\033[H\033[J", end="")
         typewriter_print('Investigate body (1)  Go to computer (2)  Go to the safe (3)', delay=0.03)
         choice = input()
         if choice =='3':
             if not safe_unlocked:
                 safe_unlocked=play_safe()
-            safe_contents()
+                # safe_contents()
+            else:
+                safe_contents()
 
 #salfdjewqjfiwqjflwjlfjalfew

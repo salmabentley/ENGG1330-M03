@@ -24,6 +24,7 @@ def play_safe():
             else:
                 print("\033[H\033[J", end="")
                 typewriter_print('*CLICK* The red light turns off and the heavy lock opens, revealing its contents.', delay=0.05)
+                safe_contents()
                 return True
 
 def safe_contents():
