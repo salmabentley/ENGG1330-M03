@@ -37,7 +37,7 @@ def play_intro():
     print("\033[H\033[J", end="")
     time.sleep(1)
     typewriter_print('Thomas Vance lays in a pool of his own blood in the centre of the room.', delay=0.05)
-    typewriter_print('Peter Lang crouches next to him, visibly shaken.', delay=0.05)
+    typewriter_print('George Tam crouches next to him, visibly shaken.', delay=0.05)
     typewriter_print('You remember seeing him when investigating Vance Construction.', delay=0.05)
     typewriter_print('You ask him to leave the scene so that you can investigate further.', delay=0.05)
     print("\033[H\033[J", end="")
