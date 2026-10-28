@@ -1,6 +1,7 @@
 import time
 from introduction import typewriter_print
 from md import display_md
+import introduction
 
 def play_safe():
     print("\033[H\033[J", end="")
@@ -50,7 +51,7 @@ def safe_contents():
             typewriter_print('You pick up the file and examine it.', delay=0.04)
             typewriter_print('There seem to be documents regarding an investigation.', delay=0.04)
             typewriter_print('You begin reading through the documents.', delay=0.04)
-            display_md('./project/documents/negligence_docs.md')
+            display_md('./project/documents/investigation.md', name=introduction.name)
             print("\033[H\033[J", end="")
         elif choice.lower() == 'd':
             print("\033[H\033[J", end="")
@@ -78,4 +79,6 @@ def print_keypad():
     print('~ 7(PQRS) ~ 8(TUV) ~ 9(WXYZ) ~')
     print('~~~~ * ~~~~~ 0(+) ~~~~~ # ~~~~')
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
+
+
 

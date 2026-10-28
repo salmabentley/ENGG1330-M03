@@ -9,8 +9,8 @@ computer_unlocked=False
 
 if __name__ == "__main__":
     # play intro
-    # get_name()
-    # play_intro()
+    get_name()
+    play_intro()
 
     # game loop
     while True:

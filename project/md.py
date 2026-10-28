@@ -25,7 +25,12 @@ def process_markdown_paragraph(paragraph):
         text = paragraph[2:].upper()
         return [f"{BOLD}{CYAN} {text} {RESET}"]
     elif paragraph.startswith("## "):
-        return [f"{BOLD}{YELLOW}▶ {paragraph[3:]}{RESET}"]
+            clean_text = paragraph[3:]
+            wrapped_h2 = textwrap.wrap(clean_text, width=74)
+            styled_lines = [f"\n{BOLD}{YELLOW}▶ {wrapped_h2[0]}{RESET}"]
+            for line in wrapped_h2[1:]:
+                styled_lines.append(f"  {BOLD}{YELLOW}{line}{RESET}")
+            return styled_lines
     elif paragraph.startswith("### "):
         return [f"{BOLD}{BRIGHT_WHITE}• {paragraph[4:]}{RESET}"]
         
@@ -56,7 +61,7 @@ def process_markdown_paragraph(paragraph):
         
     return styled_paragraph_lines
 
-def display_md(filepath):
+def display_md(filepath, **kwargs):
     """Reads a .md file, applies styles, wraps to 76 cols, and pages within 24 rows."""
     if not os.path.exists(filepath):
         print(f"File not found: {filepath}")
@@ -64,6 +69,13 @@ def display_md(filepath):
 
     with open(filepath, 'r', encoding='utf-8') as f:
         raw_text = f.read()
+
+    if kwargs:
+            try:
+                raw_text = raw_text.format(**kwargs)
+            except KeyError as e:
+                # If a placeholder in the file wasn't provided in kwargs, catch it gracefully
+                print(f"Warning: Missing markdown variable {e}")
 
     # Step 1: Wrap and style paragraphs while preserving layout structure
     wrapped_lines = []
