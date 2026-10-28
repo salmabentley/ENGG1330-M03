@@ -30,14 +30,10 @@ def computer_move(board):
 def play():
     board = [" "] * 9
     time.sleep(1)
-    print (input("[New Goal] Win the tic-tac-toe to unlock the computer. Press Enter to continue."))
-    time.sleep(1)
     print ("You are X. The computer is O. Squares are numbered 1-9, left to right, top to bottom.")
     time.sleep(2)
     print_board([str(i+1) if c == " " else c for i, c in enumerate(board)])
     time.sleep(1)
-    print ("The game starts now. You go first, good luck!")
-
     while True:
         move = None
         while move is None:
