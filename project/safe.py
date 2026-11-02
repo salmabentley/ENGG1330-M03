@@ -2,9 +2,10 @@ import time
 from introduction import typewriter_print
 from md import display_md
 import introduction
+import state
 
 def play_safe():
-    print("\033[H\033[J", end="")
+    state.refresh_screen()
     time.sleep(1)
     typewriter_print('You approach the safe, its red light blinking ominously.', delay=0.05)
     typewriter_print('Above the safe, you see a poster showing all the blood types.', delay=0.05)
@@ -14,7 +15,7 @@ def play_safe():
         return False
     else:
         while True:
-            print("\033[H\033[J", end="")
+            state.refresh_screen()
             print_keypad()
             code=input('Enter the code:  ')
             if (code!='2220'):
@@ -23,38 +24,38 @@ def play_safe():
                 if (not res):
                     return False
             else:
-                print("\033[H\033[J", end="")
+                state.refresh_screen()
                 typewriter_print('*CLICK* The red light turns off and the heavy lock opens, revealing its contents.', delay=0.05)
                 safe_contents()
                 return True
 
 def safe_contents():
-    print("\033[H\033[J", end="")
+    state.refresh_screen()
     typewriter_print('Inside the safe, you see a stack of money, a news paper, and a file.', delay=0.05)
     while True:
         typewriter_print('What would you like to do? Inspect money (1) Read newspaper article (2) Examine file (3) Exit safe (d)',delay=0.03)
         choice = input()
         if choice =='1':
-            print("\033[H\033[J", end="")
+            state.refresh_screen()
             typewriter_print('You pick up the money and notice a sticky note placed on top of the stack. It reads:', delay=0.04)
             typewriter_print('"For Eleanor"', delay=0.1)
             typewriter_print('You count the money and find that it is an exceptionally large sum, enough to sustain a family for a few years', delay=0.04)
             typewriter_print('You put the money back in the safe.', delay=0.04)
-            print("\033[H\033[J", end="")
+            state.refresh_screen()
         elif choice == '2':
-            print("\033[H\033[J", end="")
+            state.refresh_screen()
             typewriter_print('You pick up the newspaper and read the article.', delay=0.04)
             display_md('./project/documents/news.md')
-            print("\033[H\033[J", end="")
+            state.refresh_screen()
         elif choice == '3':
-            print("\033[H\033[J", end="")
+            state.refresh_screen()
             typewriter_print('You pick up the file and examine it.', delay=0.04)
             typewriter_print('There seem to be documents regarding an investigation.', delay=0.04)
             typewriter_print('You begin reading through the documents.', delay=0.04)
             display_md('./project/documents/investigation.md', name=introduction.name)
-            print("\033[H\033[J", end="")
+            state.refresh_screen()
         elif choice.lower() == 'd':
-            print("\033[H\033[J", end="")
+            state.refresh_screen()
             typewriter_print('You close the safe and step away.', delay=0.04)
             break
 
