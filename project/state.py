@@ -10,6 +10,7 @@ computer_investigated = False
 safe_investigated = False
 start=0
 timer=0
+energy=1
 
 def time_left():
     elapsed=time.time()-start

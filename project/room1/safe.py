@@ -1,8 +1,8 @@
 import time
-from introduction import typewriter_print
-from md import display_md
-import introduction
-import state
+from room1.introduction import typewriter_print
+from room1.md import display_md
+import room1.introduction as introduction
+import project.state as state
 
 def play_safe():
     state.refresh_screen()

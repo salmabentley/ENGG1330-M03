@@ -44,4 +44,5 @@ def play_intro():
     time.sleep(1)
     typewriter_print('Tucked in a corner, you spot an electronic safe, blinking red.', delay=0.05)
     typewriter_print('Vance\'s computer is still on, seemingly on some sort of game.', delay=0.05)
+    typewriter_print('Someone has called the police. You have 10 minutes to investigate before Forensics arrive.', delay=0.05)
     typewriter_print('[New Goal] Investigate the room.', delay=0.05)

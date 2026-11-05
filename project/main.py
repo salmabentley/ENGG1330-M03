@@ -1,11 +1,11 @@
 import sys
 import time
-from introduction import typewriter_print, get_name, play_intro
-from safe import play_safe, safe_contents
-from computer import explore_computer, unlock_computer
-from body import dead_body
-from state import print_hud
-import state
+from room1.introduction import typewriter_print, get_name, play_intro
+from room1.safe import play_safe, safe_contents
+from room1.computer import explore_computer, unlock_computer
+from room1.body import dead_body
+from project.state import print_hud
+from . import state
 
 
 # GLOBAL VARIABLES
@@ -21,8 +21,8 @@ def countdown(t):
 
 if __name__ == "__main__":
     # play intro
-    # get_name()
-    # play_intro()
+    get_name()
+    play_intro()
 
     # game loop
     state.start=time.time()
@@ -33,16 +33,16 @@ if __name__ == "__main__":
         typewriter_print('Investigate body (1)  Go to computer (2)  Go to the safe (3)', delay=0.03)
         choice = input()
         if choice =='1':
-            state.current_objective = 'Investigate body'
+            state.current_objective = 'Investigate the body'
             dead_body()
         elif choice == '2':
-            state.current_objective = 'Investigate computer'
+            state.current_objective = 'Investigate the computer'
             if not state.computer_unlocked:
                 state.computer_unlocked = unlock_computer()
             else:
                 explore_computer()
         elif choice =='3':
-            state.current_objective = 'Investigate safe'
+            state.current_objective = 'Investigate the safe'
             if not state.safe_unlocked:
                 state.safe_unlocked=play_safe()
             else:
