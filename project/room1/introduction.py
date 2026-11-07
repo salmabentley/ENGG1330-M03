@@ -1,14 +1,7 @@
 
 import time
 import sys
-
-def typewriter_print(text, delay=0.03):
-    for char in text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(delay)
-    print() 
-    time.sleep(1)
+from ..state import typewriter_print
 
 def get_name():
     print("\033[H\033[J", end="")

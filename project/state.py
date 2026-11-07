@@ -13,6 +13,14 @@ timer=0
 energy=100
 energy_decrease=0.5
 
+def typewriter_print(text, delay=0.03):
+    for char in text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(delay)
+    print() 
+    time.sleep(1)
+
 def time_left():
     elapsed=time.time()-start
     remaining=600-elapsed
