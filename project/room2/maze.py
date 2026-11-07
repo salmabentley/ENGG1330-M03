@@ -30,15 +30,37 @@ import keyboard
 from termcolor import colored
 from .. import state
 
+# maze=[
+#     list('|---------------------------------------------|'),
+#     list('|door | x . . . . . . . . . . . . |kitchen| . |'),
+#     list('|-------| . |-----------------| . |-------| . |'),
+#     list('|office | . | . . . . . . . . | . | . . . | . |'),
+#     list('|-------| . | . . |library| . | . |---| . . . |'),
+#     list('| . . . | . | . . |-----------| . | . . . . . |'),
+#     list('| . . . | . | . . | . . . . . . . . . . . . . |'),
+#     list('| . . . . . . . . . . . . . . | . . . . . . . |'),
+#     list('|-------| . |-----------------| . |-----------|'),
+#     list('|fitness| . . . . . . . . . . | . | . . | . % |'),
+#     list('| room  | . | . & . . . . . . | . | . . | . . |'),
+#     list('|-------| . | . . . . . . . . | . | . . | . . |'),
+#     list('| . | . | . | . |ballroom | . | . |-| . | . |-|'),
+#     list('| . | . | . | . . . . . . . . . . | . . . . . |'),
+#     list('| . . . . . |-----------------| . . . |toilet |'),
+#     list('|-------| . . . . . . . . . . . . . |---------|'),
+#     list('| . . . . . . . . . . . . . . . . . |         |'),
+#     list('|-----------------| . | . |---------|         |'),
+#     list('| conference room | . | . | bedroom  ----|    |'),
+#     list('|-----------------| . | . |-------------------|'),
+#     list('| . . . . . . . . . . | . | . . . . . . . . . |'),
+#     list('| # . . . . . . . | . | . | . . . . . . . . . |'),
+#     list('|-----------------| . | . . . . . |  bathroom |'),
+#     list('| . . . . . . . . | . | . . |-----------------|'),
+#     list('| . . . . . . . . . . | . . . . . . . . . . @ |'),
+#     list('|---------------------------------------------|')
+# ]
 maze=[
     list('|---------------------------------------------|'),
-    list('|door | x . . . . . . . . . . . . |kitchen| . |'),
-    list('|-------| . |-----------------| . |-------| . |'),
-    list('|office | . | . . . . . . . . | . | . . . | . |'),
-    list('|-------| . | . . |library| . | . |---| . . . |'),
-    list('| . . . | . | . . |-----------| . | . . . . . |'),
-    list('| . . . | . | . . | . . . . . . . . . . . . . |'),
-    list('| . . . . . . . . . . . . . . | . . . . . . . |'),
+    list('|library| . . x |office | . . . . |  kitchen  |'),
     list('|-------| . |-----------------| . |-----------|'),
     list('|fitness| . . . . . . . . . . | . | . . | . % |'),
     list('| room  | . | . & . . . . . . | . | . . | . . |'),
@@ -47,12 +69,10 @@ maze=[
     list('| . | . | . | . . . . . . . . . . | . . . . . |'),
     list('| . . . . . |-----------------| . . . |toilet |'),
     list('|-------| . . . . . . . . . . . . . |---------|'),
-    list('| . . . . . . . . . . . . . . . . . |         |'),
     list('|-----------------| . | . |---------|         |'),
     list('| conference room | . | . | bedroom  ----|    |'),
     list('|-----------------| . | . |-------------------|'),
-    list('| . . . . . . . . . . | . | . . . . . . . . . |'),
-    list('| # . . . . . . . | . | . | . . . . . . . . . |'),
+    list('| # . . . . . . . . . | . | . . . . . . . . . |'),
     list('|-----------------| . | . . . . . |  bathroom |'),
     list('| . . . . . . . . | . | . . |-----------------|'),
     list('| . . . . . . . . . . | . . . . . . . . . . @ |'),
@@ -64,6 +84,14 @@ def is_movable(x,y):
     if maze[y][x] == '.':
         return True
     else:
+        if maze[y][x] == '&':
+            pass
+        elif maze[y][x] == '#':
+            pass
+        elif maze[y][x] == '%':
+            pass
+        elif maze[y][x] == '@':
+            pass
         return False
 
 def check_energy():
@@ -76,7 +104,7 @@ def move():
     global posy
     global posx
     posy = 1
-    posx = 8
+    posx = 14
     while True:
         event = keyboard.read_event()
         if event.event_type == keyboard.KEY_DOWN:
@@ -88,7 +116,7 @@ def move():
                     posy -= 1
                     maze[posy][posx] = 'x'
                     moved = True
-                    state.energy-=1
+                    state.energy-=state.energy_decrease
             elif event.name == 'a':
                 if is_movable(posx - 2, posy):
                     if check_energy():
@@ -96,21 +124,21 @@ def move():
                         posx -= 2
                         maze[posy][posx] = 'x'
                         moved = True
-                        state.energy-=1
+                        state.energy-=state.energy_decrease
             elif event.name == 's':
                 if is_movable(posx, posy + 1):
                     maze[posy][posx] = '.'
                     posy += 1
                     maze[posy][posx] = 'x'
                     moved = True
-                    state.energy-=1
+                    state.energy-=state.energy_decrease
             elif event.name == 'd':
                 if is_movable(posx + 2, posy):
                     maze[posy][posx] = '.'
                     posx += 2
                     maze[posy][posx] = 'x'
                     moved = True
-                    state.energy-=1
+                    state.energy-=state.energy_decrease
             
             if moved:
                 draw_maze()
@@ -118,7 +146,8 @@ def move():
                     exit('Game over')
 
 def draw_maze():
-    print("\033[H\033[J", end="")
+    # print("\033[H\033[J", end="")
+    state.refresh_screen()
 
     for row in maze:
         for element in row:
@@ -135,11 +164,13 @@ def draw_maze():
                 elif element == '&':
                     print(colored(element, 'magenta'), end='')
                 elif element == '#':
-                    print(colored(element, 'blue'), end='')
+                    print(colored(element, 'green'), end='')
                 else:
                     print(element, end='')
         print()
-            
+    print('═'*80)
+    print('Use WASD to move, P to end the maze and convict someone.')
+    print(f'{colored("Energy:", "green")} {state.energy}  {colored('%','blue')} Peter Lang   {colored('@','yellow')} Ms. Gabrielle  {colored('&','magenta')} George Tam   {colored('#','green')} Eleanor Lan')
 
 draw_maze()
 move()
