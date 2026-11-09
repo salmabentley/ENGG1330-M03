@@ -1,8 +1,8 @@
-import tic 
+from room1 import tic 
 import time
-from introduction import typewriter_print
-from md import display_md
+from room1.md import display_md
 import state
+from state import typewriter_print
 
 def unlock_computer():
     state.refresh_screen()
@@ -12,6 +12,7 @@ def unlock_computer():
     typewriter_print ("You move the mouse, hopefully to collect any useful information.", delay=0.05)
     typewriter_print ("And as expected, the computer has been locked...", delay=0.05)
     while True:
+        state.current_objective='Unlock the computer'
         state.refresh_screen()
         typewriter_print ("[New Goal] Unlock the computer", delay=0.05)
         id = input ("Face ID (1)  Fingerprint (2)  A Challenge (3)  Exit (4): ").strip() # add exit button
@@ -36,6 +37,7 @@ def unlock_computer():
             typewriter_print("You attempt to unlock the computer by winning a challenge.", delay=0.05)
             typewriter_print("The computer presents you with a tic-tac-toe game.", delay=0.05)
             time.sleep(0.5)
+            state.current_objective = 'Win the tic-tac-toe to unlock the computer'
             state.refresh_screen()
             typewriter_print("[New Goal] Win the tic-tac-toe to unlock the computer.", delay=0.05)
             tic_result = tic.play()
@@ -60,7 +62,7 @@ def unlock_computer():
 
 
 def explore_computer():
-    zip_lock = False
+    zip_unlock = False
     state.refresh_screen()
     typewriter_print("The computer lights up and it brings you to Mr.Vance's main browser.", delay=0.05)
     typewriter_print("You notice that there is an unread email from the mailbox, received at 8:30 pm.", delay=0.05)
@@ -68,21 +70,23 @@ def explore_computer():
     typewriter_print("The bin stores a video recording and a ZIP file, which have been deleted just a couple of hours ago.", delay =0.05)
     typewriter_print("You wonder why...", delay=0.05)
 
+    typewriter_print("[New Goal] Explore the computer", delay=0.05)
     while True:
+        state.current_objective = 'Explore the computer'
         state.refresh_screen()
-        typewriter_print("[New Goal] Explore the computer", delay=0.05)
         computer_explore = input("Open email (1)  Open ZIP file (2)  Open video recording (3)  Exit (4): ").strip()
         if computer_explore == "1":
             typewriter_print("You open the email and find a message from Mr.Vance's secretary.", delay=0.05)
-            display_md('./project/documents/email.md')
+            display_md('documents/email.md')
         elif computer_explore == "2":
-            if not zip_lock:
+            if not zip_unlock:
                 typewriter_print("You open the ZIP file and find that it is locked with a password.", delay=0.05)
-                zip_lock = input("Do you want to unlock the ZIP file (y/n)? ").strip().lower()
-                if zip_lock == "n":
+                user = input("Do you want to unlock the ZIP file (y/n)? ").strip().lower()
+                if user == "n":
                     typewriter_print("You decide to leave the ZIP file alone for now.", delay=0.05)
                 else:
                     typewriter_print("The password to open this file is the answer to a math question.", delay=0.05)
+                    state.current_objective = 'Solve the math question to unzip the file'
                     state.refresh_screen()
                     typewriter_print ("[New Goal] Solve the math question to unzip the file: ∫√(tan x) dx from 0 to π/2", delay=0.05)
                     typewriter_print ("Hint: pi, sqrt(), /", delay=0.05)
@@ -91,13 +95,13 @@ def explore_computer():
                     print()
                     time.sleep(1)
                     if zip_password == "pi/sqrt(2)":
-                        zip_lock = True
+                        zip_unlock = True
                         typewriter_print("Unlock successful.", delay=0.05)
                     else:
                         print("Unlock failed.")
                         time.sleep(1)
-            if zip_lock:
-                display_md('./project/documents/zip.md')
+            if zip_unlock:
+                display_md('documents/zip.md')
         elif computer_explore == "3":
             typewriter_print("You open the video recording and it is playing a man falling off from a 12-story building.", delay=0.05)
         elif computer_explore == "4":
