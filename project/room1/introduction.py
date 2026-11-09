@@ -1,16 +1,15 @@
 
 import time
-import sys
-from ..state import typewriter_print
+from state import typewriter_print
+import state
 
 def get_name():
     print("\033[H\033[J", end="")
     time.sleep(1)
     typewriter_print("Welcome to group M03's project.", delay=0.05)
     typewriter_print("Please enter your name: ", delay=0.05)
-    global name
-    name=input()
-    typewriter_print(f'Welcome, detective {name}.', delay=0.05)
+    state.name=input()
+    typewriter_print(f'Welcome, detective {state.name}.', delay=0.05)
     time.sleep(1)
 
 def play_intro():
@@ -30,7 +29,7 @@ def play_intro():
     print("\033[H\033[J", end="")
     time.sleep(1)
     typewriter_print('Thomas Vance lays in a pool of his own blood in the centre of the room.', delay=0.05)
-    typewriter_print('Peter Lang crouches next to him, visibly shaken.', delay=0.05)
+    typewriter_print('A man crouches next to him, visibly shaken.', delay=0.05)
     typewriter_print('You remember seeing him when investigating Vance Construction.', delay=0.05)
     typewriter_print('You ask him to leave the scene so that you can investigate further.', delay=0.05)
     print("\033[H\033[J", end="")
@@ -39,3 +38,9 @@ def play_intro():
     typewriter_print('Vance\'s computer is still on, seemingly on some sort of game.', delay=0.05)
     typewriter_print('Someone has called the police. You have 10 minutes to investigate before Forensics arrive.', delay=0.05)
     typewriter_print('[New Goal] Investigate the room.', delay=0.05)
+    state.current_objective='Investigate the room'
+    state.refresh_screen()
+    typewriter_print('The time it takes for you to investigate the office directly influences the amount of energy you have in the next puzzle.')
+    typewriter_print('So use your time and energy wisely.')
+    typewriter_print('To seek extra information and help, please press H in the next screen.')
+    time.sleep(1)

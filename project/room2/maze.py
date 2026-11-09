@@ -31,6 +31,9 @@ from termcolor import colored
 from .. import state
 from .eleanor_lan import eleanor
 from .gabrielle import gabrielle
+from .GeorgeTam import george
+from .PeterLang import peter
+from .accusation import accusation
 
 maze=[
     list('|---------------------------------------------|'),
@@ -59,13 +62,17 @@ def is_movable(x,y):
         return True
     else:
         if maze[y][x] == '&':
-            pass
+            george()
+            draw_maze()
         elif maze[y][x] == '#':
             eleanor()
+            draw_maze()
         elif maze[y][x] == '%':
-            pass
+            peter()
+            draw_maze()
         elif maze[y][x] == '@':
             gabrielle()
+            draw_maze()
         return False
 
 def check_energy():
@@ -113,6 +120,17 @@ def move():
                     maze[posy][posx] = 'x'
                     moved = True
                     state.energy-=state.energy_decrease
+            elif event.name == 'p':
+                state.refresh_screen()
+                state.typewriter_print('Are you sure you want to proceed to the final accusation? (y/n)')
+                while True:
+                    ans=input()
+                    if ans.lower().strip() == 'y':
+                        accusation()
+                        return
+                    elif ans.lower().strip() == 'n':
+                        break
+                draw_maze()
             
             if moved:
                 draw_maze()
@@ -143,8 +161,8 @@ def draw_maze():
                     print(element, end='')
         print()
     print('═'*80)
+    print(f'{colored('%','blue')} {'Peter Lang' if state.photo  else '???'}   {colored('@','yellow')} Ms. Gabrielle  {colored('&','magenta')} George Tam   {colored('#','green')} Eleanor Lan')
     print('Use WASD to move, P to end the maze and convict someone.')
-    print(f'{colored("Energy:", "green")} {state.energy}  {colored('%','blue')} Peter Lang   {colored('@','yellow')} Ms. Gabrielle  {colored('&','magenta')} George Tam   {colored('#','green')} Eleanor Lan')
 
 draw_maze()
 move()

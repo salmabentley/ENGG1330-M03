@@ -1,51 +1,71 @@
-import sys
 import time
-from room1.introduction import typewriter_print, get_name, play_intro
+from room1.introduction import get_name, play_intro
 from room1.safe import play_safe, safe_contents
 from room1.computer import explore_computer, unlock_computer
 from room1.body import dead_body
-from project.state import print_hud
-from . import state
+import state
+from state import typewriter_print 
+from room1.md import display_md
 
-
-# GLOBAL VARIABLES
-
-
-def countdown(t):
-    while t:
-        mins, secs = divmod(t, 60)
-        timer = '{:02d}:{:02d}'.format(mins, secs)
-        print(timer, end='\r')  # Overwrite the line each second
-        time.sleep(1)
-        t -= 1
+investigated_all=False        #detects whether player has explored all rooms for the first time to play special dialogue
 
 if __name__ == "__main__":
     # play intro
-    get_name()
-    play_intro()
+    # get_name()
+    # play_intro()
 
     # game loop
     state.start=time.time()
     while True:
-        # countdown(600)
+
         state.current_objective = 'Investigate the room'
         state.refresh_screen()
-        typewriter_print('Investigate body (1)  Go to computer (2)  Go to the safe (3)', delay=0.03)
+        if state.safe_investigated and state.computer_investigated and state.body_investigated:
+            if not investigated_all:
+                typewriter_print('You have investigated all parts of the room.')
+                typewriter_print('You have now unlocked the rest of the mansion')
+                typewriter_print('You are free to continue exploring the Office, but note that time is ticking.')
+                state.refresh_screen()
+                investigated_all=True
+            typewriter_print('Investigate body (1)  Go to computer (2)  Go to the safe (3) Explore the mansion (4)', delay=0.03)
+        else:
+            typewriter_print('Investigate body (1)  Go to computer (2)  Go to the safe (3)', delay=0.03)
+
         choice = input()
         if choice =='1':
             state.current_objective = 'Investigate the body'
             dead_body()
+            state.body_investigated=True
         elif choice == '2':
             state.current_objective = 'Investigate the computer'
             if not state.computer_unlocked:
                 state.computer_unlocked = unlock_computer()
             else:
                 explore_computer()
+            state.computer_investigated=True
         elif choice =='3':
             state.current_objective = 'Investigate the safe'
             if not state.safe_unlocked:
                 state.safe_unlocked=play_safe()
             else:
                 safe_contents()
+            state.safe_investigated=True
+        elif choice.strip().lower() == 'h':
+            display_md('README.md')
+        elif choice.strip().lower() == 'q':
+            pass
+        #IGNORE THIS PART FIRST
 
-#salfdjewqjfiwqjflwjlfjalfew
+        if state.safe_investigated and state.computer_investigated and state.body_investigated and choice == 4:
+            #room2
+            typewriter_print('Are you sure you would like to explore the mansion now?')
+            typewriter_print('You will not be able to return to this room.')
+            while True:
+                typewriter_print('Explore mansion (Y) Continue exploring the office (N)')
+                ans=input().strip().lower()
+                if ans == 'y':
+                    #room2
+                    pass
+                else:
+                    break
+            

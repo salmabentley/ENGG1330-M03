@@ -1,8 +1,8 @@
-from . import tic 
+from room1 import tic 
 import time
-from .introduction import typewriter_print
-from .md import display_md
-from .. import state
+from room1.md import display_md
+import state
+from state import typewriter_print
 
 def unlock_computer():
     state.refresh_screen()
@@ -77,7 +77,7 @@ def explore_computer():
         computer_explore = input("Open email (1)  Open ZIP file (2)  Open video recording (3)  Exit (4): ").strip()
         if computer_explore == "1":
             typewriter_print("You open the email and find a message from Mr.Vance's secretary.", delay=0.05)
-            display_md('./project/documents/email.md')
+            display_md('documents/email.md')
         elif computer_explore == "2":
             if not zip_unlock:
                 typewriter_print("You open the ZIP file and find that it is locked with a password.", delay=0.05)
@@ -101,7 +101,7 @@ def explore_computer():
                         print("Unlock failed.")
                         time.sleep(1)
             if zip_unlock:
-                display_md('./project/documents/zip.md')
+                display_md('documents/zip.md')
         elif computer_explore == "3":
             typewriter_print("You open the video recording and it is playing a man falling off from a 12-story building.", delay=0.05)
         elif computer_explore == "4":

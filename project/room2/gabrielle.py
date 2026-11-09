@@ -24,16 +24,16 @@ def gabrielle():
             typewriter_print ("Gabrielle strongly pushes you back. She goes straight to her room and locks the door.", 0.05)
             typewriter_print ("Energy level: -5", 0.05) #Energy goes down by 5
             typewriter_print ("Reason: Disrespecting NPCs", 0.05)
-            sys.exit() #Player goes back to the map and continues investigating other NPCs
+            return #Player goes back to the map and continues investigating other NPCs
         elif q0 == "2":
             typewriter_print("Gabrielle: Oh I see, I see. How is the investigation going?", 0.05)
             typewriter_print ("You: So far not that well, I'm still lacking a lot of information. It'd be my pleasure if you're willing to help me with this", 0.05)
-            typewriter_print("Gabrielle: Go ahead my detective", 0.05)
+            typewriter_print("Gabrielle: Go ahead, detective", 0.05)
             break
         elif q0 == "1":
             typewriter_print("Gabrielle: How is everything so far? If you figure out who killed him, please let me know cause I'd have to thank them for this!", 0.05)
             typewriter_print("You: Yes, I would definitely let you know once I figure out everything. Would you mind if I ask you a few question about today's dinner?", 0.05)
-            typewriter_print("Gabrielle: Go ahead my detective", 0.05)
+            typewriter_print("Gabrielle: Go ahead, detective", 0.05)
             break
         else:
             typewriter_print ("Energy level: -2", 0.05) #Energy goes down by 2 everytime users input wrong command
@@ -46,22 +46,22 @@ def gabrielle():
 
     while True:
         typewriter_print("You:", 0.05)
-        print ("(1) What did you do at 9pm today?\n(2) Would you mind telling me about your relationship with Mr.Vance?\n(3) Why did you attend the dinner?")
+        print ("(1) What were you doing at 9pm today?\n(2) Would you mind telling me about your relationship with Mr.Vance?\n(3) How were you invited to this dinner?")
         q1 = input("You: ").strip()
         print("\033[H\033[J", end="")
         if q1 == "1":
-            typewriter_print("Gabrielle: Just getting a shower you know, it's been a long day", 0.05)
+            typewriter_print("Gabrielle: I was taking a shower, it's been a long day", 0.05)
             while True:
                 typewriter_print("You:", 0.05)
-                print ("(1) Do you have any evidence to prove that?\n(2) Do you mind sharing your story about you two relationship?\n(3) Good enough, thank you so much for sharing and see you tomorrow")
+                print ("(1) Do you have any evidence to prove that?\n(2) Do you mind sharing your story about you two relationship?\n(3) Good enough, thank you so much for sharing.")
                 q1_1 = input("You: ").strip()
                 print("\033[H\033[J", end="")
 
                 if q1_1 == "1":
-                    typewriter_print("Gabrielle: What do you mean?!? I truly don't understand where this conversation is going. See you tomorrow!", 0.05)
+                    typewriter_print("Gabrielle: Evidence? I need to prove that I\'m showering now? How ridiculous.", 0.05)
                     print()
                     time.sleep(0.5)
-                    typewriter_print ("Gabrielle strongly pushes you back. She goes straight to her room and locks the door.", 0.05)
+                    typewriter_print ("Gabrielle strongly pushes you back. She puts out her cigarette and walks away.", 0.05)
                     sys.exit()
                 elif q1_1 == "2":
                     typewriter_print ("Gabrielle: No! What do you want me to tell?! How did I get betrayed by him or what!", 0.05)
@@ -71,10 +71,10 @@ def gabrielle():
                     typewriter_print ("Gabrielle strongly pushes you back. She goes straight to her room and locks the door.", 0.05)
                     sys.exit()
                 elif q1_1 == "3":
-                    typewriter_print ("Gabrielle: Great, see you tomorrow", 0.05)
+                    typewriter_print ("Gabrielle: Great, hope you got all you needed.", 0.05)
                     print()
                     time.sleep(0.5)
-                    typewriter_print ("Gabrielle walks back to her room and you continues walking around the building...", 0.05)
+                    typewriter_print ("Gabrielle continues smoking at the window.", 0.05)
                     sys.exit()
                 else:
                     typewriter_print ("Energy level: -2", 0.05) #Energy goes down by 2 everytime users input wrong command
@@ -94,7 +94,7 @@ def gabrielle():
                     typewriter_print ("Gabrielle: Great, see you tomorrow", 0.05)
                     print()
                     time.sleep(0.5)
-                    typewriter_print ("Gabrielle walks back to her room and you continues walking around the building...", 0.05)
+                    typewriter_print ("Gabrielle continues smoking at the window, her puffs bigger than the last.", 0.05)
                     sys.exit()
                 elif q1_2 == "2":
                     typewriter_print ("Gabrielle: No! What do you want me to tell?! How did I get betrayed by him or what!", 0.05)
