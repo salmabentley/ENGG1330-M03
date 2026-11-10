@@ -15,7 +15,9 @@ def unlock_computer():
         state.current_objective='Unlock the computer'
         state.refresh_screen()
         typewriter_print ("[New Goal] Unlock the computer", delay=0.05)
-        id = input ("Face ID (1)  Fingerprint (2)  A Challenge (3)  Exit (4): ").strip() # add exit button
+        id = input ("Face ID (1)  Fingerprint (2)  A Challenge (3)  Exit (4): ").strip() 
+        state.check_player_input(id)
+
         state.refresh_screen()
         if id == "1":
             typewriter_print("You attempt to unlock the computer with your Face ID.", delay=0.05)
@@ -75,6 +77,8 @@ def explore_computer():
         state.current_objective = 'Explore the computer'
         state.refresh_screen()
         computer_explore = input("Open email (1)  Open ZIP file (2)  Open video recording (3)  Exit (4): ").strip()
+        state.check_player_input(computer_explore)
+
         if computer_explore == "1":
             typewriter_print("You open the email and find a message from Mr.Vance's secretary.", delay=0.05)
             display_md('documents/email.md')
@@ -82,6 +86,8 @@ def explore_computer():
             if not zip_unlock:
                 typewriter_print("You open the ZIP file and find that it is locked with a password.", delay=0.05)
                 user = input("Do you want to unlock the ZIP file (y/n)? ").strip().lower()
+                state.check_player_input(user)
+
                 if user == "n":
                     typewriter_print("You decide to leave the ZIP file alone for now.", delay=0.05)
                 else:
@@ -91,6 +97,8 @@ def explore_computer():
                     typewriter_print ("[New Goal] Solve the math question to unzip the file: ∫√(tan x) dx from 0 to π/2", delay=0.05)
                     typewriter_print ("Hint: pi, sqrt(), /", delay=0.05)
                     zip_password = input("Enter password: ").strip()
+                    state.check_player_input(zip_password)
+
                     typewriter_print("Checking...", delay=0.1)
                     print()
                     time.sleep(1)

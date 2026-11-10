@@ -17,6 +17,8 @@ def play_safe():
             state.refresh_screen()
             print_keypad()
             code=input('Enter the code:  ')
+            state.check_player_input(code)
+
             if (code!='2220'):
                 typewriter_print('The safe beeps angrily, rejecting your code.', delay=0.05)
                 res = get_yes_no('Would you like to re-enter another code? Yes (y) No (n)')
@@ -34,6 +36,8 @@ def safe_contents():
     while True:
         typewriter_print('What would you like to do? Inspect money (1) Read newspaper article (2) Examine file (3) Exit safe (d)',delay=0.03)
         choice = input()
+        state.check_player_input(choice)
+
         if choice =='1':
             state.refresh_screen()
             typewriter_print('You pick up the money and notice a sticky note placed on top of the stack. It reads:', delay=0.04)

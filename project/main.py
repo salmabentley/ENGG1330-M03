@@ -50,11 +50,7 @@ if __name__ == "__main__":
             else:
                 safe_contents()
             state.safe_investigated=True
-        elif choice.strip().lower() == 'h':
-            display_md('README.md')
-        elif choice.strip().lower() == 'q':
-            pass
-        #IGNORE THIS PART FIRST
+        state.check_player_input(choice)
 
         if state.safe_investigated and state.computer_investigated and state.body_investigated and choice == 4:
             #room2
@@ -63,6 +59,8 @@ if __name__ == "__main__":
             while True:
                 typewriter_print('Explore mansion (Y) Continue exploring the office (N)')
                 ans=input().strip().lower()
+                state.check_player_input(ans)
+
                 if ans == 'y':
                     #room2
                     pass
