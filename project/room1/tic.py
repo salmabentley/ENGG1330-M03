@@ -1,5 +1,6 @@
 import time
 import random
+import state
 
 def print_board(board):
     print()
@@ -40,6 +41,9 @@ def play():
             raw = input ("Enter your move (1-9): ").strip()
             if raw.isdigit() and 1 <= int(raw) <= 9 and board[int(raw)-1] == " ":
                 move = int(raw) - 1
+            elif raw.isalpha():
+                state.check_player_input(raw)
+
             else:
                 print ("Invalid move. Try again.\n")
                 time.sleep(1)
@@ -62,7 +66,7 @@ def play():
         
         if is_full(board):
             return False, "It's a tie!"
-            break
+            
 
 
 if __name__ == "__main__":

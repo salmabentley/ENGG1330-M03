@@ -14,6 +14,8 @@ def dead_body():
         state.refresh_screen()
         typewriter_print('Investigate "Red Cross Card" (1)  Investigate credit cards (2)  Investigate ID (3) Photo (4) Quit (5)', delay=0.02)
         choosing_number = input()
+        state.check_player_input(choosing_number)
+
         if choosing_number == '1':
             display_md('documents/red_cross.md')
         if choosing_number == '2':
