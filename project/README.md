@@ -2,15 +2,11 @@
 
 The game rule provides guildlines and important notices. Please read this carefully before playing the game to ensure a smooth and enjoyable experience!
 
----
-
 ## 1. Story Background
 
 You are a detective who has been invited to an exclusive mansion party by your former client, Vance Thomas. What begins as an ordinary social gathering quickly turns into a murder investigation when Vance Thomas is found dead in his office. 
 
 With four potential suspects and limited time and resources, you must carefully examine evidence, interview witnesses, and uncover hidden motives. Every decision matters. The truth is waiting to be discovered, but only a skilled detective can solve the case. 
-
----
 
 ## 2. Game Objective
 
@@ -22,8 +18,6 @@ To succeed, you need to:
 - Critically and carefully question the suspects
 - Make a final accusation
 You win if your accusation is correct and lose otherwise.
-
----
 
 ## 3. Suspect Profiles
 
@@ -46,8 +40,6 @@ There are 4 primary suspects present during the murder
 - Intense hatred towards Vance Thomas
 Each suspect may have information relevant to the case. Some information may be truthful while some may be misleading. 
 
----
-
 ## 4. Controls and Player Inputs
 
 ### Answer Inputs
@@ -64,8 +56,6 @@ In Room 2, use the following keys to move around the map:
 |    A    |   Move left one unit   |
 |    S    | Move backward one unit |
 |    D    |   Move right one unit  |
-
----
 
 ## 5. Investigation Phase: Room 1
 
@@ -86,8 +76,6 @@ Before investigating the safe, it must be unlocked. Inside are confidential docu
 
 Depending on your strategies, you don’t need to solve all the challenges. However, you must visit all the parts before exiting to Room 2. 
 
----
-
 ## 6. Time and Energy System
 
 Time spent investigating Room 1 directly affects the amount of energy available in Room 2. The longer you remain in Room 1, the less energy you will have for interviewing suspects. 
@@ -106,8 +94,6 @@ Energy = 80%
 Room 1 contains critical evidence necessary for solving the case
 - You should plan your investigation time and available energy carefully
 
----
-
 ## 7. Transition to Room 2
 
 When you decide to leave Room 1:
@@ -117,8 +103,6 @@ When you decide to leave Room 1:
 - You are transferred to Room 2
 - The suspect investigation phase begins
 This decision cannot be reversed.
-
----
 
 ## 8. Suspect Investigation Phase: Room 2
 
@@ -141,8 +125,6 @@ Once your character reaches a suspect’s location:
 - Enter your responses using the exact format requested by the game. Unrecognized input may result in energy penalty
 - Carefully evaluate every statement. Not all information is equally useful
 
----
-
 ## 9. Gathering Evidence
 
 Evidence can be discovered through:
@@ -151,8 +133,6 @@ Evidence can be discovered through:
 - Safe
 - Conversations with suspects
 Successful detectives should compare information from multiple sources rather than rely on a single clue. A suspect’s statement may confirm or contradict evidence gathered elsewhere.
-
----
 
 ## 10. Final Accusation
 
@@ -166,8 +146,6 @@ Once confirmed, the accusation cannot be changed. The game immediately proceeds 
 ### Important Note
 In case your energy reaches zero, you are immediately required to make the final accusation
 
----
-
 ## 11. Victory and Defeat Conditions
 
 ### Victory
@@ -175,8 +153,6 @@ You win the game if you correctly identify the murderer
 
 ### Defeat
 You lose the game if you accuse the wrong suspect
-
----
 
 ## 12. Interconnected Challenges and Tips
 
@@ -194,8 +170,6 @@ With these interconnected challenges, your chances of solving the case improve w
 - Manage your time wisely to preserve energy from Room 2
 - Avoid making conclusions based on a single piece of evidence
 
----
-
 ## 13. Example Gameplay
 
 1. The player enters Room 1
@@ -211,3 +185,11 @@ With these interconnected challenges, your chances of solving the case improve w
 11. The player compares the answers with evidence from Room 1
 12. The player makes a final accusation
 13. The game reveals whether the accusation is correct
+
+# **STORY FLOW**
+
+This is our the game flows logically from the start to the end
+
+![Story Flow](story_flow.jpg)
+
+
