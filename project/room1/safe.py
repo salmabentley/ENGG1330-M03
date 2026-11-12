@@ -1,7 +1,6 @@
 import time
-from introduction import typewriter_print
-from md import display_md
-import introduction
+from state import typewriter_print
+from room1.md import display_md
 import state
 
 def play_safe():
@@ -18,6 +17,8 @@ def play_safe():
             state.refresh_screen()
             print_keypad()
             code=input('Enter the code:  ')
+            state.check_player_input(code)
+
             if (code!='2220'):
                 typewriter_print('The safe beeps angrily, rejecting your code.', delay=0.05)
                 res = get_yes_no('Would you like to re-enter another code? Yes (y) No (n)')
@@ -35,12 +36,17 @@ def safe_contents():
     while True:
         typewriter_print('What would you like to do? Inspect money (1) Read newspaper article (2) Examine file (3) Exit safe (d)',delay=0.03)
         choice = input()
+        state.check_player_input(choice)
+
         if choice =='1':
             state.refresh_screen()
             typewriter_print('You pick up the money and notice a sticky note placed on top of the stack. It reads:', delay=0.04)
             typewriter_print('"For Eleanor"', delay=0.1)
             typewriter_print('You count the money and find that it is an exceptionally large sum, enough to sustain a family for a few years', delay=0.04)
             typewriter_print('You put the money back in the safe.', delay=0.04)
+            typewriter_print('[New character & dialogue unlocked]', delay=0.04)
+            state.money_found=True
+            state.eleanor=True
             state.refresh_screen()
         elif choice == '2':
             state.refresh_screen()
@@ -52,7 +58,7 @@ def safe_contents():
             typewriter_print('You pick up the file and examine it.', delay=0.04)
             typewriter_print('There seem to be documents regarding an investigation.', delay=0.04)
             typewriter_print('You begin reading through the documents.', delay=0.04)
-            display_md('./project/documents/investigation.md', name=introduction.name)
+            display_md('./project/documents/investigation.md', name=state.name)
             state.refresh_screen()
         elif choice.lower() == 'd':
             state.refresh_screen()
