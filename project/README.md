@@ -163,17 +163,17 @@ To make a final accusation:
 3. Confirm your decision
 Once confirmed, the accusation cannot be changed. The game immediately proceeds to the result screen.
 
-**Important Note**
+### Important Note
 In case your energy reaches zero, you are immediately required to make the final accusation
 
 ---
 
 ## 11. Victory and Defeat Conditions
 
-**Victory**
+### Victory
 You win the game if you correctly identify the murderer
 
-**Defeat**
+### Defeat
 You lose the game if you accuse the wrong suspect
 
 ---
