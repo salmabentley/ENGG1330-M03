@@ -12,15 +12,20 @@ computer_unlocked=False
 current_objective = ''
 current_room=1
 
-body_investigated=False
-computer_investigated = False
-safe_investigated = False
+body_investigated=True
+computer_investigated = True
+safe_investigated = True
 
 #people that have been interacted with
 peter=False
 eleanor=False
 george=False
 gabrielle=False
+
+eleanor_disabled=False
+gabrielle_disabled=False
+
+eleanor_food=False
 
 start=0
 timer=0
@@ -30,6 +35,7 @@ energy_decrease=0.5
 photo_found=False
 money_found=False
 name=''
+elapsed=0
 
 def typewriter_print(text, delay=0.03):
     for char in text:
@@ -40,6 +46,7 @@ def typewriter_print(text, delay=0.03):
     time.sleep(1)
 
 def time_left():
+    global elapsed
     elapsed=time.time()-start-paused_time
     remaining=600-elapsed
     mins, secs = divmod(int(remaining), 60)
@@ -57,7 +64,10 @@ def print_hud(objective):
         hud_right= f"ENERGY: {energy} "
     space_padding = 80 - (len(hud_left) + len(hud_right))
     #print header with reverse highlight & red text
-    sys.stdout.write(colored('Help (H) Pause (Q) + Enter'.center(80),'red',attrs=['reverse'])+'\n')
+    if current_room==1:
+        sys.stdout.write(colored('Help (H) Pause (Q) + Enter'.center(80),'red',attrs=['reverse'])+'\n')
+    else:
+        sys.stdout.write(colored('Help (H) Pause (Q)'.center(80),'red',attrs=['reverse'])+'\n')
     sys.stdout.write(colored(f'{hud_left}{' ' * max(0, space_padding)}{hud_right}\n','red', 'on_white', attrs=['reverse']))
     sys.stdout.write("═" * 80 + "\n")
 
@@ -84,8 +94,9 @@ def pause_game():
         
         if choice == '1':
             # Accumulate the time spent in the pause menu
-            paused_duration = time.time() - pause_start
-            paused_time += paused_duration
+            if current_room==1:
+                paused_duration = time.time() - pause_start
+                paused_time += paused_duration
             
             print("\nResuming game...\n")
             return 'resume'
@@ -105,5 +116,7 @@ def check_player_input(ans):
     # checks if player pressed h or q
     if ans.strip().lower() == 'h':
             display_md('documents/help.md')
+            refresh_screen()
     elif ans.strip().lower() == 'q':
             pause_game()
+            refresh_screen()
