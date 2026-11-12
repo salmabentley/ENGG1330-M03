@@ -13,8 +13,8 @@ investigated_all=False        #detects whether player has explored all rooms for
 
 if __name__ == "__main__":
     # play intro
-    # get_name()
-    # play_intro()
+    get_name()
+    play_intro()
 
     # game loop
     state.start=time.time()
