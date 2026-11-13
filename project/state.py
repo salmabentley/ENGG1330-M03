@@ -31,7 +31,7 @@ eleanor_food=False
 start=0
 timer=0
 paused_time=0
-energy=100
+energy=2
 energy_decrease=0.5
 photo_found=False
 money_found=False
@@ -115,8 +115,29 @@ def print_hud(objective):
     sys.stdout.write(colored(f'{hud_left}{' ' * max(0, space_padding)}{hud_right}\n','red', 'on_white', attrs=['reverse']))
     sys.stdout.write("═" * 80 + "\n")
 
+def check_timer():
+    if 600-elapsed <= 0:
+        print("\033[H\033[J", end="")
+        typewriter_print('You have ran out of time.')
+        typewriter_print('Forensics have arrived and everyone has evacuated the mansion.')
+        typewriter_print('The killer has taken this time to flee.')
+        typewriter_print('Game over.')
+
+        print("\033[H\033[J", end="")
+        typewriter_print('Oh no, you ran out of time!')
+        while True:
+            typewriter_print('If you would like to restart the game, enter R')
+            typewriter_print('If you would like to quit, enter Q')
+            ans=input().strip().lower()
+            if ans == 'q':
+                sys.exit()
+            elif ans == 'r':
+                os.execv(sys.executable, [sys.executable] + sys.argv)
+
 def refresh_screen():
     check_terminal_size()
+    if current_room == 1:
+        check_timer()
     print("\033[H\033[J", end="")
     print_hud(current_objective)
 
