@@ -9,10 +9,6 @@ Generative AI used: Yes
 - What was kept, changed, or rejected, and how results were checked (tests or 
 corrections): Only used for story purposes, so only the name was changed and some story elements that needed more specifications
 
-Query: here is the backstory for my game. Can you help me generate a news article on the death of the employee and its legal proceedings?
-
-detective invited to an event by an ex client. The ex client is murdered in a room, 3-5 people were seen going inside the room. Construction company due to negligence resulted in the death of an employee, company got out of it due to better resources, wife plans for revenge
-
 
 
 ## Entry 2
@@ -22,8 +18,6 @@ detective invited to an event by an ex client. The ex client is murdered in a ro
 - Substantial parts affected (files/materials): main.py
 - What was kept, changed, or rejected, and how results were checked (tests or 
 corrections): Gemini suggested printing print("\033[H\033[J", end=""). This was used to clear the terminal when needed.
-
-Query: I want to build a typewriter function that clears the terminal after a set number of lines. Is there a function that allows me to do that?
 
 
 
@@ -35,7 +29,6 @@ Query: I want to build a typewriter function that clears the terminal after a se
 - What was kept, changed, or rejected, and how results were checked (tests or 
 corrections): The storyline is still the same. Material only used for story elements that needed more specifications and details.
 
-Query: I am a secretary for Mr. Vance, George Tam, and he is CEO of Vance Construction company. I want to write an email to him reminding him about next Monday's 10am morning meetings with the Construction Department
 
 
 
@@ -48,13 +41,6 @@ Query: I am a secretary for Mr. Vance, George Tam, and he is CEO of Vance Constr
 - What was kept, changed, or rejected, and how results were checked (tests or 
 corrections): The storyline is still the same. Material only used for story elements that needed more specifications and details.
 
-Query: here is the back story of my game:
-detective invited to an event by an ex client. The ex-client was murdered in a room, 3-5 people were seen going inside the room. Construction company due to negligence resulted in the death of an employee, the company got out of it due to better resources. Help me generate a proof of negligence documents of this construction company with the following details:
-CEO: Thomas Vance
-Company: Vance Construction
-Dead employee: Arthur Lan
-
-
 
 
 ## Entry 5
@@ -64,34 +50,6 @@ Dead employee: Arthur Lan
 - Substantial parts affected (files/materials): safe.py
 - What was kept, changed, or rejected, and how results were checked (tests or 
 corrections): Gemini suggested using a while True loop to create the game loop for the safe. The loop logic was used both in play_safe and in a separate function to infinitely loop through the yes or no options with error checking. Only the loop logic was taken from AI, the rest of the structure was hand coded.
-
-Query: 
-def play_safe():
-    print("\033[H\033[J", end="")
-    time.sleep(1)
-    typewriter_print('You approach the safe, its red light blinking ominously.', delay=0.05)
-    typewriter_print('Above the safe, you see a poster showing all the blood types.', delay=0.05)
-    typewriter_print('Looking down, you see a keypad with numbers 0-9, with 3 small letters under each number', delay=0.05)
-    typewriter_print('Would you like to enter a code? Yes (y) No (n)', delay=0.05)
-    res=input()
-    if (res=='n'):
-        return False
-    elif (res=='y'):
-        print("\033[H\033[J", end="")
-        print('\nKeypad:\n')
-        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-        print('~~ 1(-) ~~ 2(ABC) ~~ 3(DEF) ~~')
-        print('~ 4(GHI) ~~ 5(JKL) ~~ 6(MNO) ~')
-        print('~ 7(PQRS) ~ 8(TUV) ~ 9(WXYZ) ~')
-        print('~~~~ * ~~~~~ 0(+) ~~~~~ # ~~~~')
-        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n')
-        code=input('Enter the code:  ')
-        if (code!='2220'):
-            typewriter_print('The safe beeps angrily, rejecting your code.', delay=0.05)
-            typewriter_print('Would you like to re-enter another code? Yes (y) No (n)', delay=0.05)
-
-i want this code to loop back to where the elif starts. i feel like i should use separate functions and invoke it circularly
-
 
 
 
@@ -104,9 +62,6 @@ i want this code to loop back to where the elif starts. i feel like i should use
 - What was kept, changed, or rejected, and how results were checked (tests or 
 corrections): Majority of the code provided by Gemini was retained. It was tested by running a sample md file through the function. Some alterations needed to be made to the styling
 
-Query: is there a way to render md files in the terminal with styling? since there is a 80-column by 24-row terminal area restriction, I want the md files preferably to be separated per restriction with a next/previous page function
-
-
 
 ## Entry 7
 - Member and date: Salma (2026/10/28)
@@ -115,15 +70,6 @@ Query: is there a way to render md files in the terminal with styling? since the
 - Substantial parts affected (files/materials): safe.py
 - What was kept, changed, or rejected, and how results were checked (tests or 
 corrections): Some small details of the document were changed (like setting, which was incorrect), but was largely kept
-
-Query: can you help me generate a police style investigation document on the following details?
-detective investigates vance construction on grounds of corporate negligence, leading to the death of arthur lan
-Investigation made my third party regulation company found that there were cost cutting on load bearing beams
-Vance construction claimed the beams were outsourced to a material company owned by Gabrielle ######
-Eleanor Lan (wife of Arthur Lan), pressed charges on grounds of negligence and corruption
-After a 3 month trial, charges were dropped against Vance Construction by the victim
-please also include the characters George Tam (assistant to Thomas Vance, CEO of Vance construction) and Peter Lang (best friend of Thomas Vance but is jealous of his wealth) 
-
 
 
 
@@ -135,21 +81,15 @@ please also include the characters George Tam (assistant to Thomas Vance, CEO of
 - What was kept, changed, or rejected, and how results were checked (tests or 
 corrections): only a few lines were changed. Display_md now accepts kwargs, and formats them within the md file
 
-Query: is there any way to do dynamic md files? i want to put the user inputted name in the md file
-
-
-
 
 
 ## Entry 9
-- Member and date: Salma (2026/11/05)
+- Member and date: Matthew (2026/11/05)
 - Tool and model/version: Gemini 3
 - Purpose: to create the format of the game overview
 - Substantial parts affected (files/materials): documentation
 - What was kept, changed, or rejected, and how results were checked (tests or 
 corrections): only generate the format of the game overview and the content is done by ourselves
-
-Query: give me an example of the format of a game overview
 
 
 
@@ -161,8 +101,43 @@ Query: give me an example of the format of a game overview
 - What was kept, changed, or rejected, and how results were checked (tests or 
 corrections): the structure for game rules suggested by gemini is good but I also added more sub headings to the game rule that are relevant to the game like the movement input, suspect profiles and energy systems.
 
-Query: Im writing a game rulebook for a game that I code in python. what is a good structure look like
 
 
+## Entry 11
+- Member and date: Salma (2026/11/7)
+- Tool and model/version: Gemini
+- Purpose: to create a sticky hud for the game
+- Substantial parts affected (files/materials): state.py
+- What was kept, changed, or rejected, and how results were checked (tests or 
+corrections): gemini suggested to create a universal screen renderer. The HUD code was taken from gemini and used in refresh_screen to update global variables like objective, time and energy.
+
+
+## Entry 12
+- Member and date: Salma (2026/11/8)
+- Tool and model/version: Gemini
+- Purpose: to allow for keyboard polling for continuous wasd input during the maze section
+- Substantial parts affected (files/materials): maze.py
+- What was kept, changed, or rejected, and how results were checked (tests or 
+corrections): gemini first suggested to use the keyboard package, which was implemented at first. However, after running it within the docker container, I encountered some issues with keyboard not being allowed on linux machines. Therefore, I asked gemini to generate a general keyboard polling function to read keys. This is used in the final code.
+
+
+
+## Entry 13
+- Member and date: Salma (2026/11/10)
+- Tool and model/version: Gemini
+- Purpose: to create a resize function for the terminal
+- Substantial parts affected (files/materials): state.py
+- What was kept, changed, or rejected, and how results were checked (tests or 
+corrections): gemini created a function that reads the terminal size then adds a message to resize the terminal if smaller than 80x24. I call the function every time refresh_screen is run
+
+
+
+## Entry 14
+- Member and date: Salma (2026/11/10)
+- Tool and model/version: Gemini
+- Purpose: to create a pause and restart function for the game
+- Substantial parts affected (files/materials): state.py
+- What was kept, changed, or rejected, and how results were checked (tests or 
+corrections): I had already coded the pause function, but needed some help to pause the game timer as we have a running background timer. Gemini suggested just calculating the paused time and subtracting it off the total. This logic is used in the final code.
 
 
