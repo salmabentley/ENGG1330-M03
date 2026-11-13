@@ -2,7 +2,7 @@ import time
 import random
 import state
 
-def print_board(board):
+def print_board(board):     #create the board 
     print()
     for i in range(0, 9, 3):
         row = board[i:i+3]

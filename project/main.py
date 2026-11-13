@@ -7,12 +7,14 @@ import state
 from state import typewriter_print 
 from room1.md import display_md
 
+from room2.maze import draw_maze, move
+
 investigated_all=False        #detects whether player has explored all rooms for the first time to play special dialogue
 
 if __name__ == "__main__":
     # play intro
-    # get_name()
-    # play_intro()
+    get_name()
+    play_intro()
 
     # game loop
     state.start=time.time()
@@ -23,13 +25,13 @@ if __name__ == "__main__":
         if state.safe_investigated and state.computer_investigated and state.body_investigated:
             if not investigated_all:
                 typewriter_print('You have investigated all parts of the room.')
-                typewriter_print('You have now unlocked the rest of the mansion')
+                typewriter_print('You have now unlocked the rest of the mansion.')
                 typewriter_print('You are free to continue exploring the Office, but note that time is ticking.')
                 state.refresh_screen()
                 investigated_all=True
-            typewriter_print('Investigate body (1)  Go to computer (2)  Go to the safe (3) Explore the mansion (4)', delay=0.03)
+            print('(1) Investigate body  \n(2) Go to computer  \n(3) Go to the safe \n(4) Explore the mansion ')
         else:
-            typewriter_print('Investigate body (1)  Go to computer (2)  Go to the safe (3)', delay=0.03)
+            print('(1) Investigate body  \n(2) Go to computer  \n(3) Go to the safe')
 
         choice = input()
         if choice =='1':
@@ -52,8 +54,9 @@ if __name__ == "__main__":
             state.safe_investigated=True
         state.check_player_input(choice)
 
-        if state.safe_investigated and state.computer_investigated and state.body_investigated and choice == 4:
+        if state.safe_investigated and state.computer_investigated and state.body_investigated and choice == '4':
             #room2
+            state.refresh_screen()
             typewriter_print('Are you sure you would like to explore the mansion now?')
             typewriter_print('You will not be able to return to this room.')
             while True:
@@ -63,7 +66,25 @@ if __name__ == "__main__":
 
                 if ans == 'y':
                     #room2
+                    # This guarantees energy starts at 100, decreases smoothly with time, and can NEVER go below 0
+                    state.elapsed = time.time() - state.start - state.paused_time  # lock in final elapsed time
+                    state.energy = round(max(0.0, 100.0 - (state.elapsed / 600.0) * 100.0),0)
+                    state.current_room=2
+                    state.refresh_screen()
+                    typewriter_print('You push open the heavy mahogany door once more.')
+                    typewriter_print('It feels much heavier than the first time.')
+                    typewriter_print('You walk out the door toward the grand hallway.')
+                    state.refresh_screen()
+                    typewriter_print('You look back at the clock in the office.')
+                    typewriter_print('Time has passed significantly.')
+                    typewriter_print('You start to feel the fatigue from investigating.')
+                    typewriter_print('But you have no time to lose.')
+                    time.sleep(1)
+                    state.refresh_screen()
+                    typewriter_print('[New objective] Explore the mansion.')
+                    state.current_objective='Explore the mansion'
+                    draw_maze()
+                    move()
                     pass
                 else:
                     break
-            
