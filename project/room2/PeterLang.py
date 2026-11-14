@@ -5,15 +5,15 @@ def peter():
     state.refresh_screen()
     typewriter_print('You enter the kitchen and see a man crouched over the counter')
     typewriter_print('He slowly sips from his glass of Jim Beam Whiskey')
-    if state.photo_found:
+    if state.photo_found: #if the player found the photo in room 1, this dialogue and the name of the character will be unlocked and 
         typewriter_print('You recognise him as the man in the photo with Thomas Vance')
         typewriter_print('Peter Lang', delay=0.1)
     typewriter_print('You approach him to ask a few questions')
     if state.photo_found:
-        typewriter_print('[New objective] Interrogate Peter Lang')
+        typewriter_print('[New objective] Interrogate Peter Lang') #showing the player's new mission is to interrogate Peter Lang
         state.current_objective='Interrogate Peter Lang'
     else:
-        typewriter_print('[New objective] Interrogate the man')
+        typewriter_print('[New objective] Interrogate the man') #showing the player's new mission is to interrogate the man without telling the player he is Peter Lang
         state.current_objective='Interrogate the man'
     state.refresh_screen()
     typewriter_print(f'You: Hello, I am detective {state.name}, do you mind answering a few of my questions?')
@@ -21,15 +21,16 @@ def peter():
         typewriter_print('Peter: Of course, fire away.')
     else:
         typewriter_print('???: Of course, fire away.')
-    while True:
+    while True: #create a loop to let the player choose the dialogue options infinetly
         if state.photo_found:
             typewriter_print("(1) Who are you? \n(2) Where were you when Thomas Vance was killed? \n(3) What’s the relationship between you and Thomas Vance? \n(4) Sorry, I have somewhere else to be ")
+            #if the player found the photo in room one, this extra question will be unlocked
         else:
             typewriter_print("(1) Who are you? \n(2) Where were you when Thomas Vance was killed? \n(3) Sorry, I have somewhere else to be ")
-        number = input()
+        number = input() #the player need to type the numbers to choose the dialogue option
         if number == '1':
             state.current_objective='Interrogate Peter Lang'
-            state.peter=True
+            state.peter=True #unlock the character so they can accuse him later
             state.refresh_screen()
             typewriter_print("You: May I know your name?", delay=0.05)
             typewriter_print("Peter: I am Peter Lang")
@@ -39,7 +40,7 @@ def peter():
             state.refresh_screen()
             typewriter_print("You: Where were you are when Thomas Vance was killed?" , delay = 0.05)
             typewriter_print("Peter: I was in the toilet when I first heard the scream." , delay = 0.05)
-            while True:
+            while True: #create another loop to let the player choose the dialogue options infinetly
                 typewriter_print("(1) Did you pass by the office?  \n(2)Thank you for your cooperation. ")
                 number_2 = input()
                 if number_2 == '1':
@@ -48,7 +49,7 @@ def peter():
                     typewriter_print("Peter: I\'ve never been here before, it\'s my first time being invited." , delay = 0.05)
                     typewriter_print("You: But if you went to the toilet, you have to pass through the office. Are you lying?" , delay = 0.05)
                     typewriter_print('Peter: NO!' , delay = 0.05)
-                elif number_2 == 'h' or number_2 == 'q':
+                elif number_2 == 'h' or number_2 == 'q': #if the player types h or q, the game will show the help menu or quit the game
                     state.check_player_input(number_2)
                 elif number_2=='2':
                     return

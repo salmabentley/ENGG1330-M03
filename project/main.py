@@ -20,7 +20,7 @@ if __name__ == "__main__":
     state.start=time.time()
     while True:
 
-        state.current_objective = 'Investigate the room'
+        state.current_objective = 'Investigate the room' #to let the player to explore room 2 (the maze) after they have investigated all the rooms in room 1 (the office)
         state.refresh_screen()
         if state.safe_investigated and state.computer_investigated and state.body_investigated:
             if not investigated_all:
@@ -34,7 +34,7 @@ if __name__ == "__main__":
             print('(1) Investigate body  \n(2) Go to computer  \n(3) Go to the safe')
 
         choice = input()
-        if choice =='1':
+        if choice =='1': #let the player choose which part of the room they want to investigate, and if they have already investigated that part of the room, they can choose to investigate it again 
             state.current_objective = 'Investigate the body'
             dead_body()
             state.body_investigated=True
@@ -57,7 +57,7 @@ if __name__ == "__main__":
         if state.safe_investigated and state.computer_investigated and state.body_investigated and choice == '4':
             #room2
             state.refresh_screen()
-            typewriter_print('Are you sure you would like to explore the mansion now?')
+            typewriter_print('Are you sure you would like to explore the mansion now?') #final confirm to the player if they wnat to explore room 2, because once they enter the mansion, they cannot go back to the office
             typewriter_print('You will not be able to return to this room.')
             while True:
                 typewriter_print('Explore mansion (Y) Continue exploring the office (N)')
