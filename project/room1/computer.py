@@ -49,15 +49,15 @@ def unlock_computer():      #return a boolean expression, ensuring player unlock
                 print()
                 time.sleep(1)
                 typewriter_print("Unlock successful.", delay=0.05)
-                explore_computer()
-                return True     #this line ends the loop, the function returns True and this is going to unlock 
+                explore_computer()      #play the explore computer function
+                return True     #this line ends the loop, the computer is unlocked so function is true. As computer is unlocked, players can explore the computer
             else:
                 typewriter_print("Checking...", delay=0.1)
                 print()
                 time.sleep(1)
                 typewriter_print("Unlock failed.", delay=0.05)
         elif id == "4":
-            return False        #in case the player does not want to unlock the computer, the function will return False and end the loop
+            return False        #in case the player does not want to unlock the computer, computer is kept at unlocked so can't access to computer explore
         else:       #in case user does not input the correct format answer, the user will continue to stay in the loop
             print ("Unlocked failed. Please try again.")
             time.sleep(1)
@@ -89,7 +89,7 @@ def explore_computer():
                 state.check_player_input(user)
 
                 if user == "n":
-                    typewriter_print("You decide to leave the ZIP file alone for now.", delay=0.05)
+                    typewriter_print("You decide to leave the ZIP file alone for now.", delay=0.05)     #zip_unlock will stay as False
                 else:
                     typewriter_print("The password to open this file is the answer to a math question.", delay=0.05)
                     state.current_objective = 'Solve the math question to unzip the file'
@@ -103,10 +103,10 @@ def explore_computer():
                     print()
                     time.sleep(1)
                     if zip_password == "pi/sqrt(2)":
-                        zip_unlock = True
+                        zip_unlock = True       #zip is now True, jump to the next "if" line and player can access the inner content
                         typewriter_print("Unlock successful.", delay=0.05)
                     else:
-                        print("Unlock failed.")
+                        print("Unlock failed.")     #go back to the Computer Explore options
                         time.sleep(1)
             if zip_unlock:      #if the zip_unlock is now True, the zip.md will open. Even if the user exits the computer and then comes back, the state of zip_unlock will stay True so the content will display without having the player to repeat the unlocking step above
                 display_md('documents/zip.md')

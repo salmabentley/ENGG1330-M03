@@ -31,8 +31,8 @@ Energy Formula
 
 ### Energy = ((600 - Time Spent in seconds ) / 600 ) x 100
 Example:
-If you leave Room 1 after 2 minutes, your energy level will be: 
-Energy = ((10-2)/10) * 100
+If you leave Room 1 after 2 minutes (120 seconds), your energy level will be: 
+Energy = ((600-120)/600) * 100
 Energy = 80%
 
 Important Notes:
@@ -79,7 +79,7 @@ To make a final accusation:
 * Once confirmed, the accusation cannot be changed. The game immediately proceeds to the result screen.
 
 Important Notes:
-In case your energy reaches zero, you are immediately required to make the final accusation
+In case your energy reaches zero, you can't move your character anymore. You are immediately required to make the final accusation by pressing P
 
 ## 8. Interconnected Challenges and Tips 
 These are the main interconnected challenges of the game:

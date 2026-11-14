@@ -8,17 +8,15 @@ def eleanor():
     typewriter_print("You hear a voice from inside the room say, 'Come in.'", delay=0.05)
     typewriter_print("You slowly open the door and see a woman on a sofa.", delay=0.05)
     typewriter_print("Name: Eleanor Lan", 0.05)
-    typewriter_print("Relationship: Thomas Vance's employee's wife", 0.05)
-    state.current_objective='Interrogate Eleanor'
-    state.eleanor=True
+    state.current_objective='Interrogate Eleanor'       #update the objective, appear on the screen
+    state.eleanor=True      #confirm that the player already approaches Eleanor. Players can only accuse people who they already interrogated
     state.refresh_screen()
     typewriter_print ("[New Goal] Interrogate Eleanor", delay=0.05)
     typewriter_print ("Eleanor: Hi detective, why are you still here so late?", delay=0.05)
     typewriter_print("You: I'm still investigating Mr. Vance's case at the moment and I need to gather your alibi.", delay=0.05)
     typewriter_print("Eleanor: Sure, go ahead", 0.05)
-    while True:
-        # print ("(1) What were you doing at 9pm today?\n(2) What's your relationship with Mr.Vance?\n(3) How did you get invited to this party?")
-        if state.money_found:
+    while True:     #the while loop ensures that in case player inputs the wrong format, they still stay in the loop
+        if state.money_found:       #connect to the Room1, if players investigate the money they have more diaglogue options
             print ("(1) What did you do at 9pm today?\n(3) Why did you attend this dinner?\n(2) Why does Mr. Vance have money for you?")
         else:
             print ("(1) What did you do at 9pm today?\n(2) Why did you attend this dinner?")
@@ -29,7 +27,7 @@ def eleanor():
             typewriter_print("Eleanor: I was in this room, calling my husband and my daughter for basically the whole night!", 0.05)
             typewriter_print("You: Oh really?", 0.05)
             while True:
-                if state.eleanor_food:
+                if state.eleanor_food:      #check state from geogre tam diaglogue, if condition is met, new dialogues
                     print("(1) Why wasn\'t your husband invited to Mr.Vance's dinner?\n(2) Do you have any evidence to prove that?\n(3) George said you asked him to bring you food. \n(4) Thank you for your information.")
                 else:
                     print("(1) Why wasn\'t your husband invited to Mr.Vance's dinner?\n(2) Do you have any evidence to prove that?\n(3) Thank you for your information.")
@@ -42,7 +40,6 @@ def eleanor():
                     typewriter_print ("Eleanor: Terrified actually, I have never imagined that I would become a witness in a deadly case.", 0.05)
                     typewriter_print("You: I get it, this is a terrible experience...", 0.05)
                     typewriter_print ("You: Anyway, thank you so much for your information. Now just take a good night rest!")
-                    # typewriter_print ("Eleanor: Great, see you tomorrow", 0.05)
                     state.refresh_screen()
                     typewriter_print ("You leave the room and continue walking around the building...", 0.05)
                     return
@@ -55,11 +52,11 @@ def eleanor():
                     time.sleep(0.5)
                     typewriter_print ("Eleanor stands up and leaves the room.", 0.05)
                     typewriter_print ("[Game update] You can no longer talk to Eleanor Lan", 0.05)
-                    state.eleanor_disabled=True
+                    state.eleanor_disabled=True     #no longer allowed to interact with character
                     return
-                elif q1_1 == "3" and not state.eleanor_food:
-                    return
-                elif q1_1 == '3' and state.eleanor_food:
+                elif q1_1 == "3" and not state.eleanor_food:        
+                    return      #back to the maze
+                elif q1_1 == '3' and state.eleanor_food:        #if two conditions are met
                     typewriter_print('Eleanor: What? I never told him to bring me food.')
                     typewriter_print('Eleanor: He said he wanted to go to the office with his boss!')
                     state.refresh_screen()
@@ -78,9 +75,9 @@ def eleanor():
                 elif q1_1 == 'h' or q1_1 == 'q':
                     state.check_player_input(q1_1)
                 else:
-                    typewriter_print ("Energy level: -1", 0.05) #Energy goes down by 1 everytime users input wrong command
+                    typewriter_print ("Energy level: -1", 0.05) #energy goes down by 1 everytime users input wrong command
                     typewriter_print ("Reason: Please input your answer as required", 0.05)
-                    state.energy-=1
+                    state.energy-=1     #energy decreases by 1
                     state.refresh_screen()
         elif q1 == "2":
             state.refresh_screen()
@@ -163,12 +160,12 @@ def eleanor():
                 elif q1_2 == 'h' or q1_2 == 'q':
                     state.check_player_input(q1_2)
                 else:
-                    typewriter_print ("Energy level: -1", 0.05) #Energy goes down by 1 everytime users input wrong command
+                    typewriter_print ("Energy level: -1", 0.05) #energy goes down by 1 everytime users input wrong command
                     typewriter_print ("Reason: Please input your answer as required", 0.05)
                     state.energy-=1
                     state.refresh_screen()
-        elif q1 == 'h' or q1 == 'q':
-            state.check_player_input(q1)
+        elif q1 == 'h' or q1 == 'q':        #check the user input if they want to pause the game or need help
+            state.check_player_input(q1)       
         else:
             typewriter_print ("Energy level: -1", 0.05) #Energy goes down by 1 everytime users input wrong command
             typewriter_print ("Reason: Please input your answer as required", 0.05)

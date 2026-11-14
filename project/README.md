@@ -1,3 +1,20 @@
+# **SET UP GUIDE**
+
+To set up the game, ensure that you have correctly installed docker on your laptop, and can successfully run docker containers. To do so, you can follow the official docker documentation at [here] (https://www.docker.com/get-started/)
+
+Have docker desktop open when running the game to prevent engine errors.
+
+To run the game, ensure that you are in the root directory (ENGG1330_GP). If you are in the /project directory, navigate back out to the root directory using cd ..
+
+Once in the root directory, run the docker container via the CLI using:
+docker compose run --rm game
+
+Enjoy playing!
+
+Container version: engg1330-project:2026-v03
+
+# **GAME OVERVIEW**
+
 # **GAME RULE**
 
 The game rule provides guildlines and important notices. Please read this carefully before playing the game to ensure a smooth and enjoyable experience!
@@ -81,11 +98,12 @@ Depending on your strategies, you don’t need to solve all the challenges. Howe
 Time spent investigating Room 1 directly affects the amount of energy available in Room 2. The longer you remain in Room 1, the less energy you will have for interviewing suspects. 
 
 ### Energy Formula
-Energy = ((10 - Time Spent ) / 10 ) x 100
+Energy = ((600 - Time Spent in Seconds ) / 600 ) x 100
 
 ### Example
-If you leave Room 1 after 2 minutes, your energy level will be: 
-Energy = ((10-2)/10) * 100
+Example:
+If you leave Room 1 after 2 minutes (120 seconds), your energy level will be: 
+Energy = ((600-120)/600) * 100
 Energy = 80%
 
 ### Important Notes
@@ -138,13 +156,14 @@ Successful detectives should compare information from multiple sources rather th
 
 At any point during Room 2, you may decide that you have gathered enough evidence to solve the case.
 To make a final accusation:
-1. Select the accusation option
-2. Choose one of the four suspects
-3. Confirm your decision
+1. Select the accusation option by pressing P in room 2
+3. Select the accusation option
+4. Choose one of the four suspects
+5. Confirm your decision
 Once confirmed, the accusation cannot be changed. The game immediately proceeds to the result screen.
 
 ### Important Note
-In case your energy reaches zero, you are immediately required to make the final accusation
+In case your energy reaches zero, you can't move your character anymore. You are immediately required to make the final accusation by pressing P
 
 ## 11. Victory and Defeat Conditions
 
@@ -193,3 +212,6 @@ This is our the game flows logically from the start to the end
 ![Story Flow](story_flow.jpg)
 
 
+# **KNOWN LIMITATION**
+# **CONTRIBUTION**
+# **SOURCES**
