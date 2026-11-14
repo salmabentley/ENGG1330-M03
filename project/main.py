@@ -12,6 +12,7 @@ from room2.maze import draw_maze, move
 investigated_all=False        #detects whether player has explored all rooms for the first time to play special dialogue
 
 if __name__ == "__main__":
+    state.check_terminal_size()
     # play intro
     get_name()
     play_intro()
