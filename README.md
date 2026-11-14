@@ -15,6 +15,39 @@ Container version: engg1330-project:2026-v03
 
 # **GAME OVERVIEW**
 
+This game is a detective mystery game where you are invited to a suspicious dinner event by an ex-client, which then becomes a crime scene. You are assigned to find the murderer who killed a wealthy CEO Thomas Vance in his private mansion.
+
+Your task is a race against time and clues, which you have to investigate the crime scene to gather crucial clues, control your energy levels which are limited by the time used, to ensure you have enough energy to interrogate the suspects in a maze-like map. 
+
+There are total 2 rooms to investigate and target the suspects
+
+## **Room 1: The CEO's Office (Investigation & Puzzle-Solving)**
+
+Before you enter the maze to question suspects, you must investigate the CEO's office. Your performance and time spent here directly affect your starting conditions and energy levels for the second room.
+
+**The Dead Body:** 
+- Inspecting Thomas Vance's wallet reveals his ID card, a credit card, a Red Cross card, a photograph with his best friend Peter Lang.
+- The ID card confirms the identity of Thomas Vance. The Red Cross Card reveals his blood type (AB+).The credit card is a useless and redundant clue. Players need to use an old telephone keypad letter-to-number convention to translate the blood type (AB+) into the 4-digit combination 2220 for the room's safe.
+
+**The Safe:**
+- Unlocked it using the code 2220, it contains hush money and news articles outlining the tragic death of a construction worker due to corporate negligence at Vance Construction, which brings out the primary revenge motive
+
+**The Computer & Desk:**
+- Complete a quick game of Tic-Tac-Toe to pass the login screen.
+- Solve a Math Question Puzzle to open a password-protected zip file containing proof of corporate negligence.
+
+## **Room 2: The Maze & Interrogations**
+
+With the clues from Room 1, you enter a  maze-like map of the mansion where suspects are scattered across different positions.
+
+Energy System: Every step you take drains your energy level. Managing your steps carefully is crucial to explore every corner of the map without using up all the energy.
+
+Interrogating Suspects: Find the marks on the map corresponding to four key suspects. Your clues got from Room 1 unlocks deeper conversation:
+- **Peter Lang:** Using the wallet photo to uncover his complex mix of jealousy and admiration to Thomas Vance.
+- **George Tam:** His alibi directly contradicts with Eleanor Lan’s dialogue, leading to a deeper investigation that the player needs to find out who is telling the truth.
+- **Ms. Gabrielle:** Bitter about past betrayal, she admits she attended uninvited just to relish his downfall.
+- **Eleanor Lan:** The wife of the construction worker who died due to company negligence. She claims that she was on the phone all night, but her hidden motives and contradictions unmask her as the mastermind seeking revenge.
+
 # **GAME RULE**
 
 The game rule provides guildlines and important notices. Please read this carefully before playing the game to ensure a smooth and enjoyable experience!
@@ -209,9 +242,15 @@ With these interconnected challenges, your chances of solving the case improve w
 
 This is our the game flows logically from the start to the end
 
-![Story Flow](story_flow.jpg)
+![Story Flow](./project/story_flow.jpg)
 
 
 # **KNOWN LIMITATION**
+- For the tic tac toe game, the computer choice is random so it does not know how to play the game and how to win the game so the challenge is not challenging at all. 
+- In the computer_explore function, the user’s input has to match the answer to a math question. Even though there is hint, but the answer format is still very rigid so even a small difference like a space “pi / sqrt(2)” still be considered as incorrect compared to the standard question “pi/sqrt(2)”
+- Timer only updates when refresh_screen is run. That means the terminal clock only updates when entering a room or challenge, rather than ticking live during screen idle time.
+- Help and quit menus can only be accessed when awaiting input (due to conflict between standard python input during dialogue and keyboard polling)
+
 # **CONTRIBUTION**
+
 # **SOURCES**
