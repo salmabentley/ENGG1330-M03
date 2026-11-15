@@ -3,6 +3,7 @@ from state import typewriter_print
 from room1.md import display_md
 import state
 
+# plays when the safe has not been unlocked yet
 def play_safe():
     state.refresh_screen()
     time.sleep(1)
@@ -11,6 +12,7 @@ def play_safe():
     typewriter_print('Looking down, you see a keypad with numbers 0-9, with 3 small letters under each number', delay=0.05)
     res = get_yes_no('Would you like to enter a code? Yes (y) No (n)')
     if (not res):
+        #returns to main game loop if player says no
         return False
     else:
         while True:
@@ -19,12 +21,15 @@ def play_safe():
             code=input('Enter the code:  ')
             state.check_player_input(code)
 
+            #if code is incorrect
             if (code!='2220'):
                 typewriter_print('The safe beeps angrily, rejecting your code.', delay=0.05)
                 res = get_yes_no('Would you like to re-enter another code? Yes (y) No (n)')
+                #re enters infinite loop if player says yes, otherwise return them to the main game loop
                 if (not res):
                     return False
             else:
+                #play safe contents when the safe is unlocked and return to the main game loop
                 state.refresh_screen()
                 typewriter_print('*CLICK* The red light turns off and the heavy lock opens, revealing its contents.', delay=0.05)
                 safe_contents()
@@ -33,6 +38,8 @@ def play_safe():
 def safe_contents():
     state.refresh_screen()
     typewriter_print('Inside the safe, you see a stack of money, a news paper, and a file.', delay=0.05)
+
+    #allow players to infinitely explore the safe
     while True:
         typewriter_print('What would you like to do? Inspect money (1) Read newspaper article (2) Examine file (3) Exit safe (d)',delay=0.03)
         choice = input()
@@ -45,12 +52,16 @@ def safe_contents():
             typewriter_print('You count the money and find that it is an exceptionally large sum, enough to sustain a family for a few years', delay=0.04)
             typewriter_print('You put the money back in the safe.', delay=0.04)
             typewriter_print('[New character & dialogue unlocked]', delay=0.04)
+
+            #alters global variables to allow for hidden dialogue in room 2
             state.money_found=True
-            state.eleanor=True
+            state.eleanor=True      #players know who Eleanor is now, so the legend will not say ??? in room 2
             state.refresh_screen()
         elif choice == '2':
             state.refresh_screen()
             typewriter_print('You pick up the newspaper and read the article.', delay=0.04)
+
+            #renders md file which has the newspaper article
             display_md('documents/news.md')
             state.refresh_screen()
         elif choice == '3':
@@ -66,7 +77,7 @@ def safe_contents():
             break
 
 
-
+#general function to get yes or no from user for code simplicity
 def get_yes_no(prompt):
     while True:
         typewriter_print(prompt, delay=0.02)
@@ -78,6 +89,7 @@ def get_yes_no(prompt):
         else:
             typewriter_print('Invalid input. Please enter "y" for yes or "n" for no.', delay=0.02)
 
+#renders the safe keypad for the user
 def print_keypad():
     print('\nKeypad:\n')
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')

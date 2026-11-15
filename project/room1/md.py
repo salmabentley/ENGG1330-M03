@@ -61,8 +61,10 @@ def process_markdown_paragraph(paragraph):
         
     return styled_paragraph_lines
 
+
+
+"""Reads a .md file, applies styles, wraps to 76 cols, and pages within 24 rows."""
 def display_md(filepath, **kwargs):
-    """Reads a .md file, applies styles, wraps to 76 cols, and pages within 24 rows."""
     if not os.path.exists(filepath):
         print(f"File not found: {filepath}")
         return

@@ -6,16 +6,16 @@ from room1.md import display_md
 import textwrap
 
 
-# GLOBAL VARIABLES
-safe_unlocked=False         #flag to store whether safe has been unlocked
-computer_unlocked=False
+# GLOBAL VARIABLES [ROOM 1]
+safe_unlocked=False             #flag to store whether safe has been unlocked
+computer_unlocked=False         #flag to store whether the computer has been unlocked
 
-current_objective = ''
-current_room=1
+current_objective = ''          #track current objective
+current_room=2                  #tracks the current room the player is in
 
-body_investigated=False
-computer_investigated = False
-safe_investigated = False
+body_investigated=False         #tracks whether the body has been interacted with yet
+computer_investigated = False   #tracks whether the computer has been interacted with yet
+safe_investigated = False       #tracks whether the safe has been interacted with yet
 
 #people that have been interacted with
 peter=False
@@ -23,24 +23,27 @@ eleanor=False
 george=False
 gabrielle=False
 
+#GLOBAL VARIABLES [ROOM 2]
+
+#flags that determine if certain npcs have been disabled due to poor dialogue choices in room 2
 eleanor_disabled=False
 gabrielle_disabled=False
 
-eleanor_food=False
+eleanor_food=False  #checks whether player has interacted with George Tam about Eleanor giving him food. Triggers hidden dialogue with Eleanor Lan
+photo_found=False   #flag for whether the photo has been found with Peter Lang in room 1. Triggers hidden dialogue with Peter Lang
+money_found=False   #flag for whether money has been found in the safe in room 1. Triggers hidden dialogue with Eleanor Lan
 
-start=time.time()
-timer=0
-paused_time=0
-energy=100
-energy_decrease=0.5
-photo_found=False
-money_found=False
-name=''
-elapsed=0
+# time variables
+start=time.time()   #start time in seconds
+timer=0             #formatted time string
+paused_time=0       #time spent in pause menu
+elapsed=0           #elapsed time in room 1
 
-import os
-import sys
-import time
+# energy variables
+energy=100          #tracks player energy in room 2
+energy_decrease=0.5 #rate at which energy decreases per step in room 2
+
+name=''             #tracks player name
 
 def check_terminal_size():
     """
@@ -77,37 +80,51 @@ def check_terminal_size():
         # Check again after a brief pause so it auto-resumes the moment they expand the window
         time.sleep(0.5)
 
+# types given text in a typewriter style with a delay between each character
 def typewriter_print(text, delay=0.03):
+    # wraps lines using text wrap to fit width limit
     wrapped_lines = textwrap.wrap(text, width=80)
-    
+
+    # prints each character in each line plus delay
     for line in wrapped_lines:
         for char in line:
             sys.stdout.write(char)
             sys.stdout.flush()
             time.sleep(delay)
-        print()  # Move to the next line when the wrapped line finishes
+        print()
         
     time.sleep(1)
 
+# calculates time left in room 1
 def time_left():
     global elapsed
+    #subtracts paused time and start time from current time to get time elapsed in seconds
     elapsed=time.time()-start-paused_time
+
+    #calculates remaining time in seconds
     remaining=600-elapsed
+
+    #converts remaining time in seconds into minutes and seconds remaining to be displayed
     mins, secs = divmod(int(remaining), 60)
+
+    #adds time to formatable string
     string = '{:02d}:{:02d}'.format(mins, secs)
     return string
 
+#Draws the sticky header at the very top
 def print_hud(objective):
-    """Draws the sticky header at the very top without breaking your existing code."""
     timer=time_left()
     sys.stdout.write("\033[H") # Jump cursor to top
     hud_left = f" OBJECTIVE: {objective}"
+
+    #put timer on the hud if in room 1, else put the energy remaining
     if current_room==1:
         hud_right = f"TIME: {timer} "
     else:
         hud_right= f"ENERGY: {energy} "
     space_padding = 80 - (len(hud_left) + len(hud_right))
-    #print header with reverse highlight & red text
+
+    #help and pause menu can only be accessed via normal python input in room 1, so + enter makes it clear to user that they have to enter it in input
     if current_room==1:
         sys.stdout.write(colored('Help (H) Pause (Q) + Enter'.center(80),'red',attrs=['reverse'])+'\n')
     else:
@@ -115,6 +132,7 @@ def print_hud(objective):
     sys.stdout.write(colored(f'{hud_left}{' ' * max(0, space_padding)}{hud_right}\n','red', 'on_white', attrs=['reverse']))
     sys.stdout.write("═" * 80 + "\n")
 
+#checks if player is out of time in room 1
 def check_timer():
     if 600-elapsed <= 0:
         print("\033[H\033[J", end="")
@@ -130,10 +148,13 @@ def check_timer():
             typewriter_print('If you would like to quit, enter Q')
             ans=input().strip().lower()
             if ans == 'q':
+                #exits entire programme
                 sys.exit()
             elif ans == 'r':
+                #reruns main.py
                 os.execv(sys.executable, [sys.executable] + sys.argv)
 
+#function to run state functions whenever the screen is refreshed for simplicity
 def refresh_screen():
     check_terminal_size()
     if current_room == 1:
@@ -141,6 +162,7 @@ def refresh_screen():
     print("\033[H\033[J", end="")
     print_hud(current_objective)
 
+#pauses game and allows player to quit or restart
 def pause_game():
     global paused_time, start
 
@@ -169,7 +191,7 @@ def pause_game():
             
         elif choice == '2':
             print("\nRestarting game...")
-# This completely replaces the current python process with a fresh run of main.py
+            # This completely replaces the current python process with a fresh run of main.py
             os.execv(sys.executable, [sys.executable] + sys.argv)
             
         elif choice == '3':
