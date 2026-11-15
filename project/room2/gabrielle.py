@@ -17,7 +17,7 @@ def gabrielle():
     typewriter_print ("Gabrielle: Hi detective, what are you doing here this late? Still investigating huh?", delay=0.05)
     # typewriter_print("You:", delay=0.05)
 
-    while True:
+    while True:     #start the loop, once the player exits the conversation, end loop
         print ("(1) Yes, I'm investigating the murder of Mr.Vance\n(2) No, I'm just walking around, for a quick break you know...\n(3) None of your business")
         q0 = input("").strip()
         state.refresh_screen()
@@ -37,7 +37,7 @@ def gabrielle():
             typewriter_print ("You: So far not very well, I'm still lacking a lot of information.", 0.05)
             typewriter_print ("You: It'd be great if you could answer a few questions for me.", 0.05)
             typewriter_print("Gabrielle: Go ahead, detective", 0.05)
-            break
+            break       #break out of the loop 
         elif q0 == "1":
             typewriter_print("Gabrielle: How is everything so far?", 0.05)
             typewriter_print("Gabrielle: If you figure out who killed him, please let me know cause I'd have to thank them for this!", 0.05)
@@ -63,7 +63,7 @@ def gabrielle():
         state.refresh_screen()
         if q1 == "1":
             typewriter_print("Gabrielle: I was taking a shower, it's been a long day", 0.05)
-            while True:
+            while True:     #all the while True loop ensures that even player enters sth wrong, the dialogue continues to appear
                 print ("(1) Do you have any evidence to prove that?\n(2) Good enough, thank you so much for sharing.")
                 q1_1 = input("").strip()
                 state.refresh_screen()
@@ -146,14 +146,14 @@ def gabrielle():
                     typewriter_print ("Gabrielle continues smoking at the window, her puffs bigger than the last.", 0.05)
                     return
                 else:
-                    typewriter_print ("Energy level: -1", 0.05) #Energy goes down by 2 everytime users input wrong command
+                    typewriter_print ("Energy level: -1", 0.05) #Energy goes down by 1 everytime users input wrong command
                     typewriter_print ("Reason: Please input your answer as required", 0.05)
                     state.energy-=1
                     state.refresh_screen()
         elif q1 == 'h' or q1 == 'q':
             state.check_player_input(q1)
         else:
-            typewriter_print ("Energy level: -1", 0.05) #Energy goes down by 2 everytime users input wrong command
+            typewriter_print ("Energy level: -1", 0.05) #Energy goes down by 1 everytime users input wrong command
             typewriter_print ("Reason: Please input your answer as required", 0.05)
             state.energy-=1
             state.refresh_screen()
