@@ -1,3 +1,5 @@
+# ACCESSING HELP DOCS DO NOT PAUSE TIME! USE WISELY!
+
 # Game Rules
 ## 1. Story Background
 You are a detective who has been invited to an exclusive mansion party by your former client, Vance Thomas. What begins as an ordinary social gathering quickly turns into a murder investigation when Vance Thomas is found dead in his office. 
