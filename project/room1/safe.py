@@ -51,14 +51,14 @@ def safe_contents():
         elif choice == '2':
             state.refresh_screen()
             typewriter_print('You pick up the newspaper and read the article.', delay=0.04)
-            display_md('./project/documents/news.md')
+            display_md('documents/news.md')
             state.refresh_screen()
         elif choice == '3':
             state.refresh_screen()
             typewriter_print('You pick up the file and examine it.', delay=0.04)
             typewriter_print('There seem to be documents regarding an investigation.', delay=0.04)
             typewriter_print('You begin reading through the documents.', delay=0.04)
-            display_md('./project/documents/investigation.md', name=state.name)
+            display_md('documents/investigation.md', name=state.name)
             state.refresh_screen()
         elif choice.lower() == 'd':
             state.refresh_screen()

@@ -19,7 +19,7 @@ def eleanor():
     while True:
         # print ("(1) What were you doing at 9pm today?\n(2) What's your relationship with Mr.Vance?\n(3) How did you get invited to this party?")
         if state.money_found:
-            print ("(1) What did you do at 9pm today?\n(3) Why did you attend this dinner?\n(2) Why does Mr. Vance have money for you?")
+            print ("(1) What did you do at 9pm today?\n(2) Why did you attend this dinner?\n(3) Why does Mr. Vance have money for you?")
         else:
             print ("(1) What did you do at 9pm today?\n(2) Why did you attend this dinner?")
         q1 = input().strip()
@@ -135,7 +135,7 @@ def eleanor():
             while True:
                 print ("(1) How did Mr.Vance react then? \n(2) How did you get over it?\n(3) I apologize for bringing back old memories.")
                 q1_2 = input().strip()
-                print("\033[H\033[J", end="")
+                state.refresh_screen()
                 if q1_2 == "1":
                     typewriter_print("Eleanor: He had supported me throughout the whole journey since Arthur's death!", 0.05)
                     typewriter_print("Eleanor: The money is to support me and my daughter.", 0.05)
@@ -160,6 +160,7 @@ def eleanor():
                     typewriter_print("You: It's good to hear that! Thank you for your time.")
                     time.sleep(0.5)
                     typewriter_print ("You leave the room and continue walking around the building...", 0.05)
+                    return
                 elif q1_2 == 'h' or q1_2 == 'q':
                     state.check_player_input(q1_2)
                 else:

@@ -28,10 +28,10 @@ gabrielle_disabled=False
 
 eleanor_food=False
 
-start=0
+start=time.time()
 timer=0
 paused_time=0
-energy=2
+energy=100
 energy_decrease=0.5
 photo_found=False
 money_found=False

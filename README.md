@@ -190,6 +190,6 @@ With these interconnected challenges, your chances of solving the case improve w
 
 This is our the game flows logically from the start to the end
 
-![Story Flow](story_flow.jpg)
+![Story Flow](./project/story_flow.jpg)
 
 
