@@ -24,7 +24,7 @@ def gabrielle():
             typewriter_print ("Gabrielle: ...",0.05)
             typewriter_print ("Gabrielle: Good to know. And please, get out of here, you disrespectful bastard!", 0.05)
             state.refresh_screen()
-            typewriter_print ("Gabrielle strongly pushes you back. She goes straight to the bathroom locks the door.", 0.05)
+            typewriter_print ("Gabrielle strongly pushes you back. She goes straight to the bathroom and locks the door.", 0.05)
             typewriter_print ("Energy level: -5", 0.05) #Energy goes down by 5 due to poor dialogue choice
             typewriter_print ("Reason: Disrespecting NPCs", 0.05)
             typewriter_print ("[Game update] You can no longer interct with Gabrielle.")

@@ -256,6 +256,7 @@ This is our the game flows logically from the start to the end
 - Timer only updates when refresh_screen is run. That means the terminal clock only updates when entering a room or challenge, rather than ticking live during screen idle time.
 - Help and quit menus can only be accessed when awaiting input (due to conflict between standard python input during dialogue and keyboard polling)
 - Script only checks for the terminal size when refresh_screen is run, so it only checks if the terminal is too small when the player either inputs something or a cutscene is changing.
+- state.refresh_screen runs in introduction.py (line 46) before the start time for room 1 has been registered, so it displays a false time for that short cutscene. Once you enter room 1, however, the time is changed back to its original form. This is because previously it would register a negative time and end the game, so the only solution I could think of was to offset the initial time so that at least it will be positive. This does not affect gameplay
 
 # **CONTRIBUTION**
 
@@ -302,4 +303,4 @@ This is our the game flows logically from the start to the end
 - MD file styling (used in all md files) - https://google.github.io/styleguide/docguide/style.html
 - Riser sound effect (used in trailer) - https://youtu.be/Am4wYTiHHx8?is=M7VMyb-yVjSlX-Hw
 - Time ticking background effect (used in trailer) - https://youtu.be/xN6y84DCAxk?is=WTINgZKteLJaX5wx
-- Trailer music (used in trailre) - https://youtu.be/mB3DLrUng1U?is=FpaHYQjxm_dVlTI-
+- Trailer music (used in trailer) - https://youtu.be/mB3DLrUng1U?is=FpaHYQjxm_dVlTI-
