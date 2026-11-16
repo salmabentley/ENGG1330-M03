@@ -19,7 +19,7 @@ def george():
     typewriter_print('You: Just want to cover all bases, that\'s all.')
 
     while True:
-        typewriter_print("(1) Who are you? \n(2) Sorry, I have some place else to be ")
+        print("(1) Who are you? \n(2) Sorry, I have some place else to be ")
         choice_1 = input()
         if choice_1 == '1':
             state.refresh_screen()
@@ -35,7 +35,7 @@ def george():
             typewriter_print("You: So why were you in the office with Thomas when he passed?", delay=0.05)
             typewriter_print("George: I wasn't, I was asked by Madame Lan to bring her some food from the kitchen" , delay=0.05)
             while True:
-                typewriter_print("(1) What then? \n(2) What did you see when you were walking to the kitchen? \n(3) Thank you for your time. ")
+                print("(1) What then? \n(2) What did you see when you were walking to the kitchen? \n(3) Thank you for your time. ")
                 choice_2 = input()
                 state.refresh_screen()
                 if choice_2 == '1':

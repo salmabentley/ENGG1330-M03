@@ -49,7 +49,7 @@ def play():
     #create the board with 9 empty spaces in one list for 3x3 grid
     board = [" "] * 9       
     time.sleep(1)
-    print ("You are X. The computer is O. Squares are numbered 1-9, left to right, top to bottom.")
+    print ("You are X. The computer is O. Squares are numbered 1-9, left to right, top to \nbottom.")
     time.sleep(2)
 
     #loops through every spaces in the board with index, replaces the empty string with str(i+1) or else keeps existing character. this create a list of what to display on the grid when passing to the print_board function

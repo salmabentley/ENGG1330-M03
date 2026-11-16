@@ -6,10 +6,9 @@ import state
 # plays when the safe has not been unlocked yet
 def play_safe():
     state.refresh_screen()
-    time.sleep(1)
-    typewriter_print('You approach the safe, its red light blinking ominously.', delay=0.05)
+    typewriter_print('You approach the safe, its red light blinking ominously.')
     typewriter_print('Above the safe, you see a poster showing all the blood types.', delay=0.05)
-    typewriter_print('Looking down, you see a keypad with numbers 0-9, with 3 small letters under each number', delay=0.05)
+    typewriter_print('Looking down, you see a keypad with numbers 0-9, with 3 small letters under each number')
     user = get_yes_no('Would you like to enter a code? Yes (y) No (n)')
     if (not user):
         #returns to main game loop if player says no
@@ -23,7 +22,7 @@ def play_safe():
 
             #if code is incorrect
             if (code!='2220'):
-                typewriter_print('The safe beeps angrily, rejecting your code.', delay=0.05)
+                typewriter_print('The safe beeps angrily, rejecting your code.')
                 user = get_yes_no('Would you like to re-enter another code? Yes (y) No (n)')
                 #re enters infinite loop if player says yes, otherwise return them to the main game loop
                 if (not user):
@@ -31,27 +30,28 @@ def play_safe():
             else:
                 #play safe contents when the safe is unlocked and return to the main game loop
                 state.refresh_screen()
-                typewriter_print('*CLICK* The red light turns off and the heavy lock opens, revealing its contents.', delay=0.05)
+                typewriter_print('*CLICK* The red light turns off and the heavy lock opens, revealing its contents.')
                 safe_contents()
                 return True
 
 def safe_contents():
     state.refresh_screen()
-    typewriter_print('Inside the safe, you see a stack of money, a news paper, and a file.', delay=0.05)
+    typewriter_print('Inside the safe, you see a stack of money, a news paper, and a file.')
 
     #allow players to infinitely explore the safe
     while True:
-        typewriter_print('What would you like to do? Inspect money (1) Read newspaper article (2) Examine file (3) Exit safe (d)',delay=0.03)
+        typewriter_print('What would you like to do?')
+        print('\n(1) Inspect money  \n(2) Read newspaper article  \n(3) Examine file  \n(4) Exit safe ')
         choice = input()
         state.check_player_input(choice)
 
         if choice =='1':
             state.refresh_screen()
-            typewriter_print('You pick up the money and notice a sticky note placed on top of the stack. It reads:', delay=0.04)
+            typewriter_print('You pick up the money and notice a sticky note placed on top of the stack. It reads:')
             typewriter_print('"For Eleanor"', delay=0.1)
-            typewriter_print('You count the money and find that it is an exceptionally large sum, enough to sustain a family for a few years', delay=0.04)
-            typewriter_print('You put the money back in the safe.', delay=0.04)
-            typewriter_print('[New character & dialogue unlocked]', delay=0.04)
+            typewriter_print('You count the money and find that it is an exceptionally large sum, enough to sustain a family for a few years')
+            typewriter_print('You put the money back in the safe.')
+            typewriter_print('[New character & dialogue unlocked]', delay=0.05)
 
             #alters global variables to allow for hidden dialogue in room 2
             state.money_found=True
@@ -59,21 +59,21 @@ def safe_contents():
             state.refresh_screen()
         elif choice == '2':
             state.refresh_screen()
-            typewriter_print('You pick up the newspaper and read the article.', delay=0.04)
+            typewriter_print('You pick up the newspaper and read the article.')
 
             #renders md file which has the newspaper article
             display_md('documents/news.md')
             state.refresh_screen()
         elif choice == '3':
             state.refresh_screen()
-            typewriter_print('You pick up the file and examine it.', delay=0.04)
-            typewriter_print('There seem to be documents regarding an investigation.', delay=0.04)
-            typewriter_print('You begin reading through the documents.', delay=0.04)
+            typewriter_print('You pick up the file and examine it.')
+            typewriter_print('There seem to be documents regarding an investigation.')
+            typewriter_print('You begin reading through the documents.')
             display_md('documents/investigation.md', name=state.name)
             state.refresh_screen()
-        elif choice.lower() == 'd':
+        elif choice.lower() == '4':
             state.refresh_screen()
-            typewriter_print('You close the safe and step away.', delay=0.04)
+            typewriter_print('You close the safe and step away.')
             break
 
 

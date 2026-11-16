@@ -7,11 +7,11 @@ from state import typewriter_print
 #return a boolean expression, ensuring player unlocks the computer first before they can explore the computer
 def unlock_computer():      
     state.refresh_screen()     
-    typewriter_print ("You slowly approach the computer.", delay=0.05) 
-    typewriter_print ("The computer is an old version, probably dating back to a decade ago.", delay=0.05)
-    typewriter_print ("You wonder why, as a CEO of a big construction company, Mr.Vance still uses this till now.", delay=0.05)
-    typewriter_print ("You move the mouse, hopefully to collect any useful information.", delay=0.05)
-    typewriter_print ("And as expected, the computer has been locked...", delay=0.05)
+    typewriter_print ("You slowly approach the computer.") 
+    typewriter_print ("The computer is an old version, probably dating back to a decade ago.")
+    typewriter_print ("You wonder why, as a CEO of a big construction company, Mr.Vance still uses this till now.")
+    typewriter_print ("You move the mouse, hopefully to collect any useful information.")
+    typewriter_print ("And as expected, the computer has been locked...")
 
     #this loop ensures that the challenge will repeat until the player successfully unlocks the computer, return True to the function unlock_computer
     while True:     
@@ -20,15 +20,16 @@ def unlock_computer():
         state.refresh_screen()
         typewriter_print ("[New Goal] Unlock the computer", delay=0.05)
 
+        print("(1) Face ID   \n(2) Fingerprint   \n(3) A Challenge   \n(4) Exit ")
         #choices for user to interact with the game, the input will be strip() to match the format if player accidently types a space
-        id_choice = input("Face ID (1)  Fingerprint (2)  A Challenge (3)  Exit (4): ").strip()       
+        id_choice = input().strip()       
         state.check_player_input(id_choice)
         state.refresh_screen()
 
         #when user inputs 1, the following diaglogue will appear
         if id_choice == "1":      
-            typewriter_print("You attempt to unlock the computer with your Face ID", delay=0.05)
-            typewriter_print("You move your face slowly, opposite to the camera.", delay=0.05)
+            typewriter_print("You attempt to unlock the computer with your Face ID")
+            typewriter_print("You move your face slowly, opposite to the camera.")
             typewriter_print("Checking...", delay=0.1)
             print()
             time.sleep(1)
@@ -36,16 +37,16 @@ def unlock_computer():
             #after this line is printed, it will loop again in the while True, showing the options to unlock computer
             time.sleep(2)
         elif id_choice == "2":
-            typewriter_print("You attempt to unlock the computer with your fingerprint.", delay=0.05)
-            typewriter_print("You place your finger on the scanner.", delay=0.05)
+            typewriter_print("You attempt to unlock the computer with your fingerprint.")
+            typewriter_print("You place your finger on the scanner.")
             typewriter_print("Checking...", delay=0.1)
             print()
             time.sleep(1)
             print("Unlock failed: Fingerprint not found")
             time.sleep(2)
         elif id_choice == "3":
-            typewriter_print("You attempt to unlock the computer by winning a challenge.", delay=0.05)
-            typewriter_print("The computer presents you with a tic-tac-toe game.", delay=0.05)
+            typewriter_print("You attempt to unlock the computer by winning a challenge.")
+            typewriter_print("The computer presents you with a tic-tac-toe game.")
             time.sleep(0.5)
             state.current_objective = 'Win the tic-tac-toe to unlock the computer'
             state.refresh_screen()
@@ -85,39 +86,40 @@ def explore_computer():
     #local variable to use within the function. If zip file is unlocked return True, then the player can access the content inside
     zip_unlock = False      
     state.refresh_screen()
-    typewriter_print("The computer lights up and it brings you to Mr.Vance's main browser.", delay=0.05)
-    typewriter_print("You notice that there is an unread email from the mailbox, received at 8:30 pm.", delay=0.05)
-    typewriter_print ("You also see the Recycle Bin is currently on and decide to open it.", delay=0.05)
-    typewriter_print("The bin stores a video recording and a ZIP file, which have been deleted just a couple of hours ago.", delay =0.05)
+    typewriter_print("The computer lights up and it brings you to Mr.Vance's main browser.")
+    typewriter_print("You notice that there is an unread email from the mailbox, received at 8:30 pm.")
+    typewriter_print ("You also see the Recycle Bin is currently on and decide to open it.")
+    typewriter_print("The bin stores a video recording and a ZIP file, which have been deleted just a couple of hours ago.")
     typewriter_print("You wonder why...", delay=0.05)
 
     typewriter_print("[New Goal] Explore the computer", delay=0.05)
     while True:
         state.current_objective = 'Explore the computer'
         state.refresh_screen()
-        explore_choice = input("Open email (1)  Open ZIP file (2)  Open video recording (3)  Exit (4): ").strip()
+        print("(1) Open email   \n(2) Open ZIP file   \n(3) Open video recording   \n(4) Exit  ")
+        explore_choice = input().strip()
         state.check_player_input(explore_choice)
 
         if explore_choice == "1":
-            typewriter_print("You open the email and find a message from Mr.Vance's secretary.", delay=0.05)
+            typewriter_print("You open the email and find a message from Mr.Vance's secretary.")
             display_md('documents/email.md')       
         elif explore_choice == "2":
 
             #if the zip_lock is False, so the zip has not been unlocked yet then the player requires to unlock it first
             if not zip_unlock:      
-                typewriter_print("You open the ZIP file and find that it is locked with a password.", delay=0.05)
+                typewriter_print("You open the ZIP file and find that it is locked with a password.")
                 user = input("Do you want to unlock the ZIP file (y/n)? ").strip().lower()
                 state.check_player_input(user)
 
                 if user == "n":
                     #zip_unlock will stay as False
-                    typewriter_print("You decide to leave the ZIP file alone for now.", delay=0.05)     
+                    typewriter_print("You decide to leave the ZIP file alone for now.")     
                 else:
-                    typewriter_print("The password to open this file is the answer to a math question.", delay=0.05)
+                    typewriter_print("The password to open this file is the answer to a math question.")
                     state.current_objective = 'Solve the math question to unzip the file'
                     state.refresh_screen()
-                    typewriter_print ("[New Goal] Solve the math question to unzip the file: ∫√(tan x) dx from 0 to π/2", delay=0.05)
-                    typewriter_print ("Hint: pi, sqrt(), /", delay=0.05)
+                    typewriter_print ("[New Goal] Solve the math question to unzip the file: ∫√(tan x) dx from 0 to π/2")
+                    typewriter_print ("Hint: pi, sqrt(), /")
                     zip_password = input("Enter password: ").strip()
                     state.check_player_input(zip_password)
 

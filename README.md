@@ -162,7 +162,7 @@ This decision cannot be reversed.
 ### Overview
 - Room 2 contains a map showing the locations of all four suspects.
 - You control your detective character and move across the map using the movement controls
-- Each movement consumes energy (-0.5 per step)
+- Each movement consumes energy (-0.25 per step)
 - The purpose of Room 2 is to gather additional information and compare suspect statements against the evidence collected in Room 1.
 
 ### Approaching Suspects
@@ -255,6 +255,7 @@ This is our the game flows logically from the start to the end
 - In the computer_explore function, the user’s input has to match the answer to a math question. Even though there is hint, but the answer format is still very rigid so even a small difference like a space “pi / sqrt(2)” still be considered as incorrect compared to the standard question “pi/sqrt(2)”
 - Timer only updates when refresh_screen is run. That means the terminal clock only updates when entering a room or challenge, rather than ticking live during screen idle time.
 - Help and quit menus can only be accessed when awaiting input (due to conflict between standard python input during dialogue and keyboard polling)
+- Script only checks for the terminal size when refresh_screen is run, so it only checks if the terminal is too small when the player either inputs something or a cutscene is changing.
 
 # **CONTRIBUTION**
 

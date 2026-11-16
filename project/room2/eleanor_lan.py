@@ -24,9 +24,9 @@ def eleanor():
     while True:    
         #connect to the Room1, if players investigate the money they have more diaglogue options
         if state.money_found:       
-            print ("(1) What did you do at 9pm today?\n(2) Why did you attend this dinner?\n(3) Why does Mr. Vance have money for you?")
+            print("(1) What did you do at 9pm today?\n(2) Why did you attend this dinner?\n(3) Why does Mr. Vance have money for you?")
         else:
-            print ("(1) What did you do at 9pm today?\n(2) Why did you attend this dinner?")
+            print("(1) What did you do at 9pm today?\n(2) Why did you attend this dinner?")
         choice_1 = input().strip()
         state.refresh_screen()
 
@@ -103,8 +103,7 @@ def eleanor():
         elif choice_1 == "2":
             state.refresh_screen()
             typewriter_print("Eleanor: My husband is a senior worker under Thomas Vance so we often get invited by him for dinner and gatherings.", 0.05)
-            typewriter_print("You:", 0.05)
-            print ("(1) Why was he not here?\n(2) What do you think of his death?\n(3) Okay, thank you so much for sharing")
+            print("(1) Why was he not here?\n(2) What do you think of his death?\n(3) Okay, thank you so much for sharing")
             choice_3 = input().strip()
             state.refresh_screen()
             if choice_3 == "1":
@@ -153,7 +152,7 @@ def eleanor():
             typewriter_print("Eleanor: My husband died from an accident while he was on site...", 0.05)
             typewriter_print ("You: I'm very sorry to hear that.")
             while True:
-                print ("(1) How did Mr.Vance react then? \n(2) How did you get over it?\n(3) I apologize for bringing back old memories.")
+                print("(1) How did Mr.Vance react then? \n(2) How did you get over it?\n(3) I apologize for bringing back old memories.")
                 choice_4 = input().strip()
                 state.refresh_screen()
                 if choice_4 == "1":

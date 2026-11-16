@@ -11,7 +11,7 @@ safe_unlocked=False             #flag to store whether safe has been unlocked
 computer_unlocked=False         #flag to store whether the computer has been unlocked
 
 current_objective = ''          #track current objective
-current_room=2                  #tracks the current room the player is in
+current_room=1                  #tracks the current room the player is in
 
 body_investigated=False         #tracks whether the body has been interacted with yet
 computer_investigated = False   #tracks whether the computer has been interacted with yet
@@ -41,7 +41,7 @@ elapsed=0           #elapsed time in room 1
 
 # energy variables
 energy=100          #tracks player energy in room 2
-energy_decrease=0.5 #rate at which energy decreases per step in room 2
+energy_decrease=0.25 #rate at which energy decreases per step in room 2
 
 name=''             #tracks player name
 

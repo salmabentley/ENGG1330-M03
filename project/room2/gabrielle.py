@@ -17,7 +17,7 @@ def gabrielle():
     typewriter_print ("Gabrielle: Hi detective, what are you doing here this late? Still investigating huh?", delay=0.05)
 
     while True:     #start the loop, once the player exits the conversation, end loop
-        print ("(1) Yes, I'm investigating the murder of Mr.Vance\n(2) No, I'm just walking around, for a quick break you know...\n(3) None of your business")
+        print("(1) Yes, I'm investigating the murder of Mr.Vance\n(2) No, I'm just walking around, for a quick break you know...\n(3) None of your business")
         choice = input("").strip()
         state.refresh_screen()
         if choice == "3":
@@ -57,13 +57,13 @@ def gabrielle():
 
     while True:
         typewriter_print("You:", 0.05)
-        print ("(1) What were you doing at 9pm today?\n(2) Would you mind telling me about your relationship with Mr.Vance?\n(3) How were you invited to this dinner?")
+        print("(1) What were you doing at 9pm today?\n(2) Would you mind telling me about your relationship with Mr.Vance?\n(3) How were you invited to this dinner?")
         choice_1 = input("").strip()
         state.refresh_screen()
         if choice_1 == "1":
             typewriter_print("Gabrielle: I was taking a shower, it's been a long day", 0.05)
             while True:     #all the while True loop ensures that even player enters sth wrong, the dialogue continues to appear
-                print ("(1) Do you have any evidence to prove that?\n(2) Good enough, thank you so much for sharing.")
+                print("Do you have any evidence to prove that? (1) \nGood enough, thank you so much for sharing. (2) ")
                 choice_2 = input("").strip()
                 state.refresh_screen()
 
@@ -96,7 +96,7 @@ def gabrielle():
             typewriter_print("Gabrielle: That bastard BETRAYED me!", 0.05)
             typewriter_print("Gabrielle: I am glad he is dead now.", 0.05)
             while True:
-                print ("(1) Then why did you attend this party?\n(2) Do you mind sharing your story about your relationship?\n(3) I think I have enough information.")
+                print("(1) Then why did you attend this party?\n(2) Do you mind sharing your story about your relationship?\n(3) I think I have enough information.")
                 choice_3 = input().strip()
                 state.refresh_screen()
                 if choice_3 == "1":
@@ -126,7 +126,7 @@ def gabrielle():
             typewriter_print ("Gabrielle: He didn’t invite me, I come as I please.", 0.05)
             typewriter_print ("Gabrielle: I know his home better than himself!", 0.05)
             while True:
-                print ("(1) What do you think of his death?\n(2) Okay, thank you for sharing.")
+                print("(1) What do you think of his death?\n(2) Okay, thank you for sharing.")
                 choice_4 = input().strip().lower()
                 state.refresh_screen()
                 if choice_4 == "1":

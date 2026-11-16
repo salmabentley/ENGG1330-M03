@@ -26,9 +26,9 @@ def peter():
     while True:
         #allow players to pick a secret dialogue options if they find the photo in room 1
         if state.photo_found:
-            typewriter_print("(1) Who are you? \n(2) Where were you when Thomas Vance was killed? \n(3) What’s the relationship between you and Thomas Vance? \n(4) Sorry, I have somewhere else to be ")
+            print("(1) Who are you? \n(2) Where were you when Thomas Vance was killed? \n(3) What’s the relationship between you and Thomas Vance? \n(4) Sorry, I have somewhere else to be ")
         else:
-            typewriter_print("(1) Who are you? \n(2) Where were you when Thomas Vance was killed? \n(3) Sorry, I have somewhere else to be ")
+            print("(1) Who are you? \n(2) Where were you when Thomas Vance was killed? \n(3) Sorry, I have somewhere else to be ")
         choice_1 = input()
         if choice_1 == '1':
             #update state variables if players have not discovered peter yet
@@ -44,11 +44,11 @@ def peter():
             typewriter_print("You: Where were you are when Thomas Vance was killed?" , delay = 0.05)
             typewriter_print("Peter: I was in the toilet when I first heard the scream." , delay = 0.05)
             while True:
-                typewriter_print("(1) Did you pass by the office?  \n(2)Thank you for your cooperation. ")
+                print("(1) Did you pass by the office?  \n(2)Thank you for your cooperation. ")
                 choice_2 = input()
                 if choice_2 == '1':
                     state.refresh_screen()
-                    typewriter_print("Peter: What office? How do I know whether I have passed through it?t" , delay = 0.05)
+                    typewriter_print("Peter: What office? How do I know whether I have passed through it?" , delay = 0.05)
                     typewriter_print("Peter: I\'ve never been here before, it\'s my first time being invited." , delay = 0.05)
                     typewriter_print("You: But if you went to the toilet, you have to pass through the office. Are you lying?" , delay = 0.05)
                     typewriter_print('Peter: NO!' , delay = 0.05)
