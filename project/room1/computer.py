@@ -2,7 +2,8 @@ from room1 import tic
 import time      
 from room1.md import display_md     
 import state       
-from state import typewriter_print     
+from state import typewriter_print
+
 #return a boolean expression, ensuring player unlocks the computer first before they can explore the computer
 def unlock_computer():      
     state.refresh_screen()     
@@ -11,20 +12,22 @@ def unlock_computer():
     typewriter_print ("You wonder why, as a CEO of a big construction company, Mr.Vance still uses this till now.", delay=0.05)
     typewriter_print ("You move the mouse, hopefully to collect any useful information.", delay=0.05)
     typewriter_print ("And as expected, the computer has been locked...", delay=0.05)
+
     #this loop ensures that the challenge will repeat until the player successfully unlocks the computer, return True to the function unlock_computer
     while True:     
         #display the objective on the terminal
         state.current_objective='Unlock the computer'      
         state.refresh_screen()
         typewriter_print ("[New Goal] Unlock the computer", delay=0.05)
-        #choices for user to interact with the game, the input will be strip() to match the format when player accidently types a space bar
-        id = input ("Face ID (1)  Fingerprint (2)  A Challenge (3)  Exit (4): ").strip()       
-        state.check_player_input(id)
 
+        #choices for user to interact with the game, the input will be strip() to match the format if player accidently types a space
+        id_choice = input("Face ID (1)  Fingerprint (2)  A Challenge (3)  Exit (4): ").strip()       
+        state.check_player_input(id_choice)
         state.refresh_screen()
+
         #when user inputs 1, the following diaglogue will appear
-        if id == "1":      
-            typewriter_print("You attempt to unlock the computer with your Face ID.", delay=0.05)
+        if id_choice == "1":      
+            typewriter_print("You attempt to unlock the computer with your Face ID", delay=0.05)
             typewriter_print("You move your face slowly, opposite to the camera.", delay=0.05)
             typewriter_print("Checking...", delay=0.1)
             print()
@@ -32,7 +35,7 @@ def unlock_computer():
             print("Unlock failed: Face not recognized\n")       
             #after this line is printed, it will loop again in the while True, showing the options to unlock computer
             time.sleep(2)
-        elif id == "2":
+        elif id_choice == "2":
             typewriter_print("You attempt to unlock the computer with your fingerprint.", delay=0.05)
             typewriter_print("You place your finger on the scanner.", delay=0.05)
             typewriter_print("Checking...", delay=0.1)
@@ -40,24 +43,28 @@ def unlock_computer():
             time.sleep(1)
             print("Unlock failed: Fingerprint not found")
             time.sleep(2)
-        elif id == "3":
+        elif id_choice == "3":
             typewriter_print("You attempt to unlock the computer by winning a challenge.", delay=0.05)
             typewriter_print("The computer presents you with a tic-tac-toe game.", delay=0.05)
             time.sleep(0.5)
             state.current_objective = 'Win the tic-tac-toe to unlock the computer'
             state.refresh_screen()
             typewriter_print("[New Goal] Win the tic-tac-toe to unlock the computer.", delay=0.05)
+
             #the tic.play() function will run, displaying the game and return True if user wins and False otherwise. This boolean is stored in the variable tic_result to unlock the following dialogues
             time.sleep(0.5)
             tic_result = tic.play()  
+
             #if tic_result is True meaning the player wins the game, the computer is unlocked and the function unlock_computer() will return True  
             if tic_result:     
                 typewriter_print("Checking...", delay=0.1)
                 print()
                 time.sleep(1)
                 typewriter_print("Unlock successful.", delay=0.05)
+
                 #play the explore computer function
                 explore_computer()      
+
                 #this line ends the loop, the computer is unlocked so function is true. As computer is unlocked, players can explore the computer
                 return True    
             else:
@@ -65,7 +72,7 @@ def unlock_computer():
                 print()
                 time.sleep(1)
                 typewriter_print("Unlock failed.", delay=0.05)
-        elif id == "4":
+        elif id_choice == "4":
             #in case the player does not want to unlock the computer, computer state is kept at unlocked so can't access to computer explore
             return False       
         else:       
@@ -88,13 +95,14 @@ def explore_computer():
     while True:
         state.current_objective = 'Explore the computer'
         state.refresh_screen()
-        computer_explore = input("Open email (1)  Open ZIP file (2)  Open video recording (3)  Exit (4): ").strip()
-        state.check_player_input(computer_explore)
+        explore_choice = input("Open email (1)  Open ZIP file (2)  Open video recording (3)  Exit (4): ").strip()
+        state.check_player_input(explore_choice)
 
-        if computer_explore == "1":
+        if explore_choice == "1":
             typewriter_print("You open the email and find a message from Mr.Vance's secretary.", delay=0.05)
             display_md('documents/email.md')       
-        elif computer_explore == "2":
+        elif explore_choice == "2":
+
             #if the zip_lock is False, so the zip has not been unlocked yet then the player requires to unlock it first
             if not zip_unlock:      
                 typewriter_print("You open the ZIP file and find that it is locked with a password.", delay=0.05)
@@ -124,12 +132,13 @@ def explore_computer():
                         #go back to the Computer Explore options
                         print("Unlock failed.")     
                         time.sleep(1)
+                        
             #if the zip_unlock is now True, the zip.md will open. Even if the user exits the computer and then comes back, the state of zip_unlock will stay True so the content will display without having the player to repeat the unlocking step above
             if zip_unlock:     
                 display_md('documents/zip.md')
-        elif computer_explore == "3":
+        elif explore_choice == "3":
             typewriter_print("You open the video recording and it is playing a man falling off from a 12-story building.", delay=0.05)
-        elif computer_explore == "4":
+        elif explore_choice == "4":
             return False
         else:
             print("Invalid option. Please try again.")

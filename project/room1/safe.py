@@ -10,8 +10,8 @@ def play_safe():
     typewriter_print('You approach the safe, its red light blinking ominously.', delay=0.05)
     typewriter_print('Above the safe, you see a poster showing all the blood types.', delay=0.05)
     typewriter_print('Looking down, you see a keypad with numbers 0-9, with 3 small letters under each number', delay=0.05)
-    res = get_yes_no('Would you like to enter a code? Yes (y) No (n)')
-    if (not res):
+    user = get_yes_no('Would you like to enter a code? Yes (y) No (n)')
+    if (not user):
         #returns to main game loop if player says no
         return False
     else:
@@ -24,9 +24,9 @@ def play_safe():
             #if code is incorrect
             if (code!='2220'):
                 typewriter_print('The safe beeps angrily, rejecting your code.', delay=0.05)
-                res = get_yes_no('Would you like to re-enter another code? Yes (y) No (n)')
+                user = get_yes_no('Would you like to re-enter another code? Yes (y) No (n)')
                 #re enters infinite loop if player says yes, otherwise return them to the main game loop
-                if (not res):
+                if (not user):
                     return False
             else:
                 #play safe contents when the safe is unlocked and return to the main game loop

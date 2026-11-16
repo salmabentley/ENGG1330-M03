@@ -3,15 +3,19 @@ import time
 from state import typewriter_print
 import state
 
+#retrieves name from player
 def get_name():
     print("\033[H\033[J", end="")
     time.sleep(1)
     typewriter_print("Welcome to group M03's project.", delay=0.05)
     typewriter_print("Please enter your name: ", delay=0.05)
+
+    #get name from user and store it globally in state file
     state.name=input()
     typewriter_print(f'Welcome, detective {state.name}.', delay=0.05)
     time.sleep(1)
 
+#plays the initial cutscene when the game is first run
 def play_intro():
     #clears screen
     print("\033[H\033[J", end="")

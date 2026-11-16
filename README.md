@@ -1,10 +1,10 @@
 # **SET UP GUIDE**
 
-To set up the game, ensure that you have correctly installed docker on your laptop, and can successfully run docker containers. To do so, you can follow the official docker documentation at [here] (https://www.docker.com/get-started/)
+To set up the game, ensure that you have correctly installed docker on your laptop, and can successfully run docker containers. To do so, you can follow the official docker documentation at [here](https://www.docker.com/get-started/)
 
 Have docker desktop open when running the game to prevent engine errors.
 
-To run the game, ensure that you are in the root directory (ENGG1330_GP). If you are in the /project directory, navigate back out to the root directory using cd ..
+To run the game, ensure that you are in the root directory (ENGG1330_M03). If you are in the /project directory, navigate back out to the root directory using cd ..
 
 Once in the root directory, run the docker container via the CLI using:
 docker compose run --rm game
@@ -15,22 +15,23 @@ Container version: engg1330-project:2026-v03
 
 # **GAME OVERVIEW**
 
-This game is a detective mystery game where you are invited to a suspicious dinner event by an ex-client, which then becomes a crime scene. You are assigned to find the murderer who killed a wealthy CEO Thomas Vance in his private mansion.
+This game is a detective mystery game where you are invited to a suspicious dinner event by an ex-client, which then becomes a crime scene. You are assigned to find who killed the wealthy CEO Thomas Vance in his private mansion.
 
-Your task is a race against time and clues, which you have to investigate the crime scene to gather crucial clues, control your energy levels which are limited by the time used, to ensure you have enough energy to interrogate the suspects in a maze-like map. 
+Your task is a race against time, where you have to investigate the crime scene to gather crucial clues, control your energy levels, which are determined by the time spent in the office, to ensure you have enough energy to interrogate the suspects in a maze-like map. 
 
 There are total 2 rooms to investigate and target the suspects
 
 ## **Room 1: The CEO's Office (Investigation & Puzzle-Solving)**
 
-Before you enter the maze to question suspects, you must investigate the CEO's office. Your performance and time spent here directly affect your starting conditions and energy levels for the second room.
+Before you enter the maze to question suspects, you must investigate the CEO's office, where the CEO has been murdered. Your performance and time spent here directly affect your starting conditions and energy levels for the second room respectively.
 
 **The Dead Body:** 
 - Inspecting Thomas Vance's wallet reveals his ID card, a credit card, a Red Cross card, a photograph with his best friend Peter Lang.
 - The ID card confirms the identity of Thomas Vance. The Red Cross Card reveals his blood type (AB+).The credit card is a useless and redundant clue. Players need to use an old telephone keypad letter-to-number convention to translate the blood type (AB+) into the 4-digit combination 2220 for the room's safe.
+- The photo with Peter Lang will enable a secret dialogue option in the second room when the character interrogates Peter Lang
 
 **The Safe:**
-- Unlocked it using the code 2220, it contains hush money and news articles outlining the tragic death of a construction worker due to corporate negligence at Vance Construction, which brings out the primary revenge motive
+- Unlocked by using the code 2220, it contains hush money for Eleanor and news articles outlining the tragic death of a construction worker due to corporate negligence at Vance Construction, which brings out the primary revenge motive for Eleanor Lan.
 
 **The Computer & Desk:**
 - Complete a quick game of Tic-Tac-Toe to pass the login screen.
@@ -38,13 +39,13 @@ Before you enter the maze to question suspects, you must investigate the CEO's o
 
 ## **Room 2: The Maze & Interrogations**
 
-With the clues from Room 1, you enter a  maze-like map of the mansion where suspects are scattered across different positions.
+With the clues from Room 1, you enter a maze-like map of the mansion where suspects are scattered across different positions.
 
 Energy System: Every step you take drains your energy level. Managing your steps carefully is crucial to explore every corner of the map without using up all the energy.
 
 Interrogating Suspects: Find the marks on the map corresponding to four key suspects. Your clues got from Room 1 unlocks deeper conversation:
 - **Peter Lang:** Using the wallet photo to uncover his complex mix of jealousy and admiration to Thomas Vance.
-- **George Tam:** His alibi directly contradicts with Eleanor Lan’s dialogue, leading to a deeper investigation that the player needs to find out who is telling the truth.
+- **George Tam:** His alibi directly contradicts with Eleanor Lan’s dialogue, leading to a deeper investigation and secret dialogue options that the player needs to find out who is telling the truth.
 - **Ms. Gabrielle:** Bitter about past betrayal, she admits she attended uninvited just to relish his downfall.
 - **Eleanor Lan:** The wife of the construction worker who died due to company negligence. She claims that she was on the phone all night, but her hidden motives and contradictions unmask her as the mastermind seeking revenge.
 
@@ -71,23 +72,24 @@ You win if your accusation is correct and lose otherwise.
 
 ## 3. Suspect Profiles
 
-There are 4 primary suspects present during the murder
+There are 4 primary suspects present during the murder:
 
 ### Peter Lang
-- Vance Thomas's best friend
-- The first person to discover the body
+- Thomas Vance's best friend
+- Heavy drinker and jealous of Thomas' success
 
 ### Eleanor Lan
-- Wife of one of Vance Thomas’s senior employees
+- Wife of one of Thomas Vance's senior ex employees
 - Unknown connections within Vance’s professional circle
 
 ### George Tam
-- Personal assistant to Vance Thomas
-- Mixed attitudes and experiences when working with Vance Thomas
+- Personal assistant to Thomas Vance
+- Mixed attitudes and experiences when working with Thomas Vance
 
 ### Gabrielle Ian
-- Vance Thomas’ ex-girlfriend, getting betrayed by him
-- Intense hatred towards Vance Thomas
+- Thomas Vance’s ex-wife. Was cheated on when they were together.
+- Intense hatred towards Thomas Vance
+
 Each suspect may have information relevant to the case. Some information may be truthful while some may be misleading. 
 
 ## 4. Controls and Player Inputs
@@ -109,7 +111,7 @@ In Room 2, use the following keys to move around the map:
 
 ## 5. Investigation Phase: Room 1
 
-Room 1 is Vance’s office where he was found dead. This room contains all major evidence required to solve the case. You have 10 minutes maximum to investigate.
+Room 1 is Vance’s office where he was found dead. This room contains all the major evidence required to solve the case. You have 10 minutes maximum to investigate. If this time runs out, it is counted as game over.
 
 ### Dead Body
 You may inspect the victim’s wallet. Inside are four different cards containing personal information about Vance Thomas. The cards may contain clues to solve subsequent locations.
@@ -128,7 +130,7 @@ Depending on your strategies, you don’t need to solve all the challenges. Howe
 
 ## 6. Time and Energy System
 
-Time spent investigating Room 1 directly affects the amount of energy available in Room 2. The longer you remain in Room 1, the less energy you will have for interviewing suspects. 
+Time spent investigating Room 1 directly affects the amount of energy available in Room 2. The longer you remain in Room 1, the less energy you will have for interviewing suspects. This is the main point of interconnectivity in our game.
 
 ### Energy Formula
 Energy = ((600 - Time Spent in Seconds ) / 600 ) x 100
@@ -142,7 +144,7 @@ Energy = 80%
 ### Important Notes
 - You may leave Room 1 at any time once you visit all 3 parts: dead body, computer, and safe
 - Once you enter Room 2, you cannot return to Room 1
-Room 1 contains critical evidence necessary for solving the case
+- Room 1 contains critical evidence necessary for solving the case
 - You should plan your investigation time and available energy carefully
 
 ## 7. Transition to Room 2
@@ -155,13 +157,13 @@ When you decide to leave Room 1:
 - The suspect investigation phase begins
 This decision cannot be reversed.
 
-## 8. Suspect Investigation Phase: Room 2
+## 8. Suspect Interrogation Phase: Room 2
 
 ### Overview
-Room 2 contains a map showing the locations of all four suspects.
-You control your detective character and move across the map using the movement controls
-Each movement consumes energy
-The purpose of Room 2 is to gather additional information and compare suspect statements against the evidence collected in Room 1.
+- Room 2 contains a map showing the locations of all four suspects.
+- You control your detective character and move across the map using the movement controls
+- Each movement consumes energy (-0.5 per step)
+- The purpose of Room 2 is to gather additional information and compare suspect statements against the evidence collected in Room 1.
 
 ### Approaching Suspects
 Once your character reaches a suspect’s location:
@@ -183,6 +185,7 @@ Evidence can be discovered through:
 - Computer
 - Safe
 - Conversations with suspects
+
 Successful detectives should compare information from multiple sources rather than rely on a single clue. A suspect’s statement may confirm or contradict evidence gathered elsewhere.
 
 ## 10. Final Accusation
@@ -190,10 +193,11 @@ Successful detectives should compare information from multiple sources rather th
 At any point during Room 2, you may decide that you have gathered enough evidence to solve the case.
 To make a final accusation:
 1. Select the accusation option by pressing P in room 2
-3. Select the accusation option
+3. Confirm the accusation option
 4. Choose one of the four suspects
 5. Confirm your decision
-Once confirmed, the accusation cannot be changed. The game immediately proceeds to the result screen.
+
+Once confirmed, the accusation cannot be changed. The game immediately proceeds to the final cutscene and result screen. The final cutscene will differ based on which character was chosen and whether that character is the murderer or not.
 
 ### Important Note
 In case your energy reaches zero, you can't move your character anymore. You are immediately required to make the final accusation by pressing P
@@ -209,10 +213,11 @@ You lose the game if you accuse the wrong suspect
 ## 12. Interconnected Challenges and Tips
 
 These are the main interconnected challenges of the game:
-- Clue in one object may affect your ability to unlock and visit another part of the room
+- Clue in one part of the room may affect your ability to unlock and visit another part of the room
 - Information you gather in Room 1 will affect your knowledge about each suspect in Room 2
 - You don’t need to investigate all the documents and challenges. However, you have to visit all parts in Room 1 before moving to Room 2
 - Your time spent in Room 1 will affect your energy level in Room 2. You need energy to move around the mansion and to investigate the suspects in Room 2
+- Certain clues in room 1 will unlock hidden dialogue options in room 2, which will aid the player in deciding who is lying about their alibi and background.
 
 With these interconnected challenges, your chances of solving the case improve when you:
 - Thoroughly investigate Room 1 before leaving
@@ -242,7 +247,7 @@ With these interconnected challenges, your chances of solving the case improve w
 
 This is our the game flows logically from the start to the end
 
-![Story Flow](./project/story_flow.jpg)
+![Story Flow](story_flow.jpg)
 
 
 # **KNOWN LIMITATION**
@@ -253,4 +258,47 @@ This is our the game flows logically from the start to the end
 
 # **CONTRIBUTION**
 
+## Salma
+- Setup basic rules of the game
+- Setup docker container and setup guide
+- Coding introduction.py
+- Coding safe.py
+- Coding maze.py
+- Coding main.py and state.py
+- Coding accusation.py
+- Coding md.py
+- Created a document an article in the computer
+- Naming the characters
+- Worked on the trailer of the game
+- Record the safe, main, state and maze part for the demo-video
+
+## Han
+- Create the background story of the game
+- Coding computer.py, eleanor_lan.py and gabrielle.py
+- Coding a tic-tac-toe in the computer part
+- Created the negligence documents in the safe
+- Created an email in the computer
+- Created the confidential report
+- Wrote the script for Eleanor Lan and Ms Gabrielle
+- Documented game rules in documentation
+- Commented on the codes
+- Record the computer and accusation part for the demo-video
+
+## Matthew
+- Coding dead_body.py, georgetam.py and peterlang.py
+- Created the credit card, id card and red cross card
+- Wrote the script for Peter Lang and George Tam
+- Final checking on the dialogues of the characters
+- Designed the maze
+- Commented on the codes
+- Documented the game overview
+- Record the dead body part for the demo-video
+- Proposed game features and ideas (like energy system and hidden dialogue options)
+
 # **SOURCES**
+- Timer display (used in state.py) - https://www.geeksforgeeks.org/python/how-to-create-a-countdown-timer-using-python/
+- Tic-Tac-Toe guidance (used in tic.py) - [Python Tic Tac Toe: Build It Step by Step | TicTacToe.now ](https://tictactoe.now/blog/how-to-build-a-tic-tac-toe-game-in-python)
+- MD file styling (used in all md files) - https://google.github.io/styleguide/docguide/style.html
+- Riser sound effect (used in trailer) - https://youtu.be/Am4wYTiHHx8?is=M7VMyb-yVjSlX-Hw
+- Time ticking background effect (used in trailer) - https://youtu.be/xN6y84DCAxk?is=WTINgZKteLJaX5wx
+- Trailer music (used in trailre) - https://youtu.be/mB3DLrUng1U?is=FpaHYQjxm_dVlTI-

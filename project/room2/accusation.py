@@ -5,6 +5,7 @@ from termcolor import colored
 import os
 import sys
 
+#plays when the player presses P and confirms the choice in room 2
 def accusation():
     state.current_objective='Arrest someone.'
     state.refresh_screen()
@@ -20,40 +21,44 @@ def accusation():
     state.refresh_screen()
     while True:
         typewriter_print('Who do you think killed Thomas Vance? This decision cannot be changed.')
-        #player can only accuse who they have already talked to shown by the state.eleanor. If they have not talked to the character, it will show uncontacted
+
+        #player can only accuse who they have already talked to, stored as state.character. If they have not talked to the character, it will show uncontacted
         print(f'(1) {'Eleanor Lan' if state.eleanor else colored('??? [Uncontacted]')} \n(2) {'George Tam' if state.george else colored('??? [Uncontacted]')} \n(3) {'Peter Lang' if state.peter else colored('??? [Uncontacted]')} \n(4) {'Gabrielle Ian' if state.gabrielle else colored('??? [Uncontacted]')}')
-        ans=input()
-        if ans=='1':
-            #if the user has not talked to this character but accuse him/her, the function will loop again in the while True and they can't accuse this character
+        character_choice=input()
+        if character_choice=='1':
+
+            #if the user chooses to accuse a character they have not interacted with yet, the function will loop again in the while True and display to the user they can't accuse this character
             if not state.eleanor:
                 state.refresh_screen()
                 typewriter_print('You have yet to unlock this character.')
             else:
                 play_accusation('Eleanor Lan')
-        if ans=='2':
+        if character_choice=='2':
             if not state.george:
                 state.refresh_screen()
                 typewriter_print('You have yet to unlock this character.')
             else:
                 #if they already talked to the character then they would enter the play_accusation function
                 play_accusation('George Tam')
-        if ans=='3':
+        if character_choice=='3':
             if not state.peter:
                 state.refresh_screen()
                 typewriter_print('You have yet to unlock this character.')
             else:
                 play_accusation('Peter Lang')
-        if ans=='4':
+        if character_choice=='4':
             if not state.gabrielle:
                 state.refresh_screen()
                 typewriter_print('You have yet to unlock this character.')
             else:
                 play_accusation('Gabrielle Ian')
 
+#play the ending accusation scene depending on which character has been accused
 def play_accusation(character):
     state.current_objective=f'Arrest {character}'
     state.refresh_screen()
     typewriter_print(f'You find {character} in the crowd.', 0.05)
+
     #different accusation will result in different dialogues
     if character=='Gabrielle Ian':
         typewriter_print('She is still holding the cigarette she was smoking earlier.', 0.05)
@@ -73,11 +78,14 @@ def play_accusation(character):
         typewriter_print('She looks up from her phone, in shock to see you.', 0.05)
 
     state.refresh_screen()
+
+    #dynamic voicelines depending on which character the user decides to accuse
     typewriter_print(f'You: {character}, you are under arrest under suspicion for the murder of Thomas Vance.', 0.05)
     typewriter_print(f'{character}: What? What evidence do you have?', 0.05)
     typewriter_print('You: You have the right to remain silent.', 0.05)
     typewriter_print('You: Anything you say can and will be used against you in court.', 0.05)
     state.refresh_screen()
+
     if character == 'Eleanor Lan':
         typewriter_print('She does not say anything further.', 0.05)
         typewriter_print('A sheet of darkness casts over her face.', 0.05)
@@ -92,6 +100,8 @@ def play_accusation(character):
         typewriter_print('George: How can this be...', 0.05)
         typewriter_print('George: Did Eleanor frame me?', 0.05)
         typewriter_print('A look of despair casts over his face.', 0.05)
+
+
     time.sleep(1)
     if character == 'Eleanor Lan' or character == 'Gabrielle Ian':
         typewriter_print('You cuff her and lead her outside, where 3 police cars are parked.', 0.05)
@@ -99,6 +109,7 @@ def play_accusation(character):
     else:
         typewriter_print('You cuff him and lead him outside, where 3 police cars are parked.', 0.05)
         typewriter_print('You hand him over to the chief deputy, who takes him back to the precinct.', 0.05)
+        
     state.current_objective='Wake up.'
     time.sleep(1)
     state.refresh_screen()
@@ -137,12 +148,14 @@ def play_accusation(character):
     typewriter_print('Thank you for playing our game, and we hope you enjoyed it.')
     typewriter_print('If you would like to replay the game, enter R.')
     typewriter_print('If you would like to quit, enter Q')
+
     #while loop ensures that incorrect format answer will be reprompted
     while True:
         ans = input().strip().lower()
         if ans == 'r':
-            #restart
+            #restart the game by re running main.py
             os.execv(sys.executable, [sys.executable] + sys.argv)
 
         elif ans == 'q':
+            #exit the programme
             sys.exit()
