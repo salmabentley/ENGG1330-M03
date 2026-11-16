@@ -7,6 +7,7 @@ Have docker desktop open when running the game to prevent engine errors.
 To run the game, ensure that you are in the root directory (ENGG1330_M03). If you are in the /project directory, navigate back out to the root directory using cd ..
 
 Once in the root directory, run the docker container via the CLI using:
+docker compose build (only run this on your first run)
 docker compose run --rm game
 
 Enjoy playing!
@@ -257,6 +258,7 @@ This is our the game flows logically from the start to the end
 - Help and quit menus can only be accessed when awaiting input (due to conflict between standard python input during dialogue and keyboard polling)
 - Script only checks for the terminal size when refresh_screen is run, so it only checks if the terminal is too small when the player either inputs something or a cutscene is changing.
 - state.refresh_screen runs in introduction.py (line 46) before the start time for room 1 has been registered, so it displays a false time for that short cutscene. Once you enter room 1, however, the time is changed back to its original form. This is because previously it would register a negative time and end the game, so the only solution I could think of was to offset the initial time so that at least it will be positive. This does not affect gameplay
+- termcolor package was used in this programme, but if it is not allowed, a fallback has been implemented using only python standard library.
 
 # **CONTRIBUTION**
 

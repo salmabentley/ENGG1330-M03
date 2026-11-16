@@ -1,9 +1,45 @@
 import sys
 import time
-from termcolor import colored
 import os
 from room1.md import display_md
 import textwrap
+
+#fallback just in case TAs don't allow termcolor
+try:
+    from termcolor import colored
+except ImportError:
+    _FG = {
+        "dark_grey": "\033[90m",
+        "red": "\033[31m",
+        "green": "\033[32m",
+        "yellow": "\033[33m",
+        "blue": "\033[34m",
+        "magenta": "\033[35m",
+        "cyan": "\033[36m",
+        "white": "\033[37m",
+    }
+    _BG = {
+        "on_white": "\033[47m",
+        "on_red": "\033[41m",
+    }
+    _ATTR = {
+        "reverse": "\033[7m",
+        "bold": "\033[1m",
+    }
+
+    def colored(text, color=None, on_color=None, attrs=None):
+        codes = []
+        if color in _FG:
+            codes.append(_FG[color])
+        if on_color in _BG:
+            codes.append(_BG[on_color])
+        if attrs:
+            for attr in attrs:
+                if attr in _ATTR:
+                    codes.append(_ATTR[attr])
+        if not codes:
+            return str(text)
+        return f"{''.join(codes)}{text}\033[0m"
 
 
 # GLOBAL VARIABLES [ROOM 1]
@@ -129,7 +165,7 @@ def print_hud(objective):
         sys.stdout.write(colored('Help (H) Pause (Q) + Enter'.center(80),'red',attrs=['reverse'])+'\n')
     else:
         sys.stdout.write(colored('Help (H) Pause (Q)'.center(80),'red',attrs=['reverse'])+'\n')
-    sys.stdout.write(colored(f'{hud_left}{' ' * max(0, space_padding)}{hud_right}\n','red', 'on_white', attrs=['reverse']))
+    sys.stdout.write(colored(f'{hud_left}{" " * max(0, space_padding)}{hud_right}\n','red', 'on_white', attrs=['reverse']))
     sys.stdout.write("═" * 80 + "\n")
 
 #checks if player is out of time in room 1

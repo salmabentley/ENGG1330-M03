@@ -2,7 +2,6 @@ import sys
 import termios
 import tty
 import select
-from termcolor import colored
 import state
 import time
 from room2.eleanor_lan import eleanor
@@ -11,6 +10,42 @@ from room2.GeorgeTam import george
 from room2.PeterLang import peter
 from room2.accusation import accusation
 from room1.md import display_md
+
+try:
+    from termcolor import colored
+except ImportError:
+    _FG = {
+        "dark_grey": "\033[90m",
+        "red": "\033[31m",
+        "green": "\033[32m",
+        "yellow": "\033[33m",
+        "blue": "\033[34m",
+        "magenta": "\033[35m",
+        "cyan": "\033[36m",
+        "white": "\033[37m",
+    }
+    _BG = {
+        "on_white": "\033[47m",
+        "on_red": "\033[41m",
+    }
+    _ATTR = {
+        "reverse": "\033[7m",
+        "bold": "\033[1m",
+    }
+
+    def colored(text, color=None, on_color=None, attrs=None):
+        codes = []
+        if color in _FG:
+            codes.append(_FG[color])
+        if on_color in _BG:
+            codes.append(_BG[on_color])
+        if attrs:
+            for attr in attrs:
+                if attr in _ATTR:
+                    codes.append(_ATTR[attr])
+        if not codes:
+            return str(text)
+        return f"{''.join(codes)}{text}\033[0m"
 
 #array to store our mansion grid
 maze=[
